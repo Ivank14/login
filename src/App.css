@@ -31,3 +31,220 @@
     transform: rotate(360deg);
   }
 }
+.wrapper {
+  position: relative;
+  top: 0;
+  height: 100vh;
+}
+
+.icon {
+  display: right;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: url(Login.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.cont {
+  height: 100%;
+  width: 100%;
+}
+
+.box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: rgba(0, 0, 0, .8);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+}
+
+.box ion-label {
+  color: #ffffff;
+}
+
+.box .link {
+  cursor: pointer;
+  color: var(--ion-color-tertiary);
+}
+
+.box .title {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #ffffff;
+  font-size: 30px;
+  text-align: center;
+}
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.box .inputBox select {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.box .inputBox input:focus~label,
+.box .inputBox input:valid~label,
+.box .inputBox .selectLable {
+  top: -20px;
+  left: 0;
+  color: var(--ion-color-tertiary);
+  font-size: 12px;
+}
+
+.box input[type="submit"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #03a9f4;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ma {
+  position: relative;
+  height: 30px;
+}
+
+.ma a {
+  cursor: pointer;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 10px 115px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  
+  background: #03a9f4;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+
+.ma a span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--ion-color-secondary), var(--ion-color-tertiary));
+  animation: animate1 2s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes animate1 {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(100%);
+  }
+}
+
+.ma a span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--ion-color-secondary), var(--ion-color-tertiary));
+  animation: animate2 2s linear infinite;
+}
+
+@keyframes animate2 {
+  0% {
+      transform: translateY(-100%);
+  }
+  100% {
+      transform: translateY(100%);
+  }
+}
+
+.ma a span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, var(--ion-color-secondary), var(--ion-color-tertiary));
+  animation: animate3 2s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes animate3 {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+.ma a span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, var(--ion-color-secondary), var(--ion-color-tertiary));
+  animation: animate4 2s linear infinite;
+}
+
+@keyframes animate4 {
+  0% {
+      transform: translateY(100%);
+  }
+  100% {
+      transform: translateY(-100%);
+  }
+}
