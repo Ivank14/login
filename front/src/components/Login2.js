@@ -1,6 +1,20 @@
 import React, { Component } from 'react'
 
-
+// export default compose(
+//     graphql(gql`mutation (...) { ... }`, { name: 'createTodo' }),
+//     graphql(gql`mutation (...) { ... }`, { name: 'updateTodo' }),
+//     graphql(gql`mutation (...) { ... }`, { name: 'deleteTodo' }),
+//   )(MyComponent);
+  
+//   function MyComponent(props) {
+//     // Instead of the default prop name, `mutate`,
+//     // we have three different prop names.
+//     console.log(props.createTodo);
+//     console.log(props.updateTodo);
+//     console.log(props.deleteTodo);
+  
+//     return null;
+//   }
 
 
 export class Login2 extends Component {
