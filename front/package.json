@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.6",
-    "react": "^16.9.0",
-    "react-datepicker": "^2.9.6",
-    "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
     "@apollo/react-hooks": "3.0.0",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
     "apollo-link-http": "^1.5.15",
+    "classnames": "^2.2.6",
     "graphql": "^14.4.2",
-    "graphql-tag": "^2.10.1"
+    "graphql-tag": "^2.10.1",
+    "react": "^16.9.0",
+    "react-apollo": "^3.1.0",
+    "react-datepicker": "^2.9.6",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
