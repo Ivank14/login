@@ -18,9 +18,12 @@ export class Home extends Component {
             <ParallaxProvider>
                 <Parallax className="custom-class" y={[-20, 20]} tagOuter="figure">
                     <Image />
-                    <img src="../assets/galaxy.jpg"/>
                 </Parallax>
             </ParallaxProvider>
+                
+            <div>
+                <img src="../assets/galaxy.jpg"/>
+            </div>
         )
     }
 }
