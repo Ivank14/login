@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -8,10 +8,20 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 export class Calificar extends Component {
     render() {
+       this.state={
+            calificacion:null
+        }
+
+        const oClick=(value)=>{
+            this.setState({calificacion:value})
+        }
+
         return (
             <Container fluid={true}>
                 <Row >
+
                     <Col md={6}>
+
                         <ListGroup variant="flush">
   <ListGroup.Item> Perfil1<span class="Iconos_Perfiles"></span></ListGroup.Item>
   <ListGroup.Item> Perfil2<span class="Iconos_Perfiles"></span></ListGroup.Item>
@@ -21,8 +31,18 @@ export class Calificar extends Component {
                     </Col>
 
                     <Col md={6}>
+
                         <Card>
-                            <Row><Col>calificacion actual</Col></Row>
+
+                            <Row><Col><div class="rating">
+                                {/* {
+                                    if(this.state.calificacion) return <Estrellitas cal={}/>
+                                    return <>
+                                } */}
+{/* <span onClick={oClick(1)}>☆</span><span onClick={oClick(2)}>☆</span><span onClick={oClick(3)}>☆</span><span onClick={oClick(4)}>☆</span><span onClick={oClick(5)}>☆</span> */}
+<Estrellitas/>
+
+</div></Col></Row>
                             <Row><Col>card imagen</Col></Row>
                             <Row><Col>calificar</Col></Row>
                         </Card>
@@ -32,6 +52,17 @@ export class Calificar extends Component {
 
         )
     }
+}
+
+function Estrellitas(){
+    
+    const [cal,oClick] = useState(0)
+    const est=[]
+    console.log(cal)
+    if(cal!=0) { for (let index = 0; index < cal; index++)  est.push("i");
+    return <>{est.map(()=><span >☆</span>)}</>
+    }
+    return <> <span onClick={oClick(1)}>☆</span><span onClick={oClick(2)}>☆</span><span onClick={oClick(3)}>☆</span><span onClick={oClick(4)}>☆</span><span onClick={oClick(5)}>☆</span></>
 }
 
 export default Calificar
