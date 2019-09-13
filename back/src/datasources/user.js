@@ -14,7 +14,9 @@ class PersonaAPI extends DataSource {
    * here, so we can know about the user making requests
    */
   initialize(config) {
+    
     this.context = config.context;
+    
   }
 
   /**
@@ -26,7 +28,7 @@ class PersonaAPI extends DataSource {
   async createPersona( nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal, descripcion, empresa, phone ) {
     const existE = await  this.store.persona.findOne({where: {email: email}});
     const existI = await this.store.persona.findByPk(id);
-    console.log(existE,existI);
+    // console.log(existE,existI);
     if ( existE || existI|| !isEmail.validate(email)) return null;
 
     const persona = await this.store.persona.create({ id:id,nombre: nombre,email:email, contrasena: contrasena, linkImg:linkImg, nacimiento:nacimiento, genero:genero, calificacion:calificacion, numCal:numCal, descripcion:descripcion, empresa:empresa, phone: phone});
@@ -39,12 +41,17 @@ class PersonaAPI extends DataSource {
 
   
   async getPersonaAct() {
-    const userId = this.context.user.id;
+    if (!this.context || !this.context.user) return false;
+    const userId = this.context.user;
     const persona = await this.store.persona.findByPk(userId);
     return persona;
   }
   async getPersona({id}) {
     const persona = await this.store.persona.findByPk(id);
+    return persona;
+  }
+  async getPersonaE({email}) {
+    const persona = await  this.store.persona.findOne({where: {email: email}});
     return persona;
   }
   async getPersonas() {
@@ -54,7 +61,7 @@ class PersonaAPI extends DataSource {
 
   async calificar({ calificacion }) {
     if (!this.context || !this.context.user) return false;
-    const id = this.context.user.id;
+    const id = this.context.user;
     const changed = await this.store.persona.update({
       calificacion: calificacion
     },{
@@ -66,7 +73,7 @@ class PersonaAPI extends DataSource {
   }
   async cambiarPWD({ contrasena }) {
     if (!this.context || !this.context.user) return false;
-    const id = this.context.user.id;
+    const id = this.context.user;
     const changed = await this.store.persona.update({
       contrasena: contrasena
     },{
@@ -78,9 +85,6 @@ class PersonaAPI extends DataSource {
   }
   async login({email, contrasena}){
     const log = await this.store.persona.findOne({where:{email:email,contrasena:contrasena}});
-    if(log){
-      this.context.user = log.dataValues.id;  
-    }
     return log;
   }
 

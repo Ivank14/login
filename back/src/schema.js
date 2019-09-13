@@ -25,13 +25,14 @@ const typeDefs = gql`
     type Mutation{
         cambioContrasena(contrasena: String!):Response!
         calificar(calificacion: Float!):Float!
-        register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, phone: Int!):Response!
+        register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, phone: String!):Response!
         login(email: String!,contrasena: String!):Response!
         delete(id: Int!): Response!
     }
     type Response{
         success: Boolean!
         message: String
+        id: Int
     }
 `;
 
