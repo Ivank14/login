@@ -7,8 +7,8 @@ import history from '../history';
 
 export default function Loginfunction() {
     const [register, { data: data1 }] = useMutation(gql`
-    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$numero: Int!){
-        register(nombre :$nombre, email: $email, contrasena: $contrasena, id:$id, genero:$genero, empresa: $empresa, numero: $numero){
+    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$phone: Int!){
+        register(nombre :$nombre, email: $email, contrasena: $contrasena, id:$id, genero:$genero, empresa: $empresa, phone: $phone){
             success
             message
         }
@@ -40,7 +40,7 @@ export class Login extends Component {
         descripcion: "",
         id: "",
         nombre: "",
-        numero:"",
+        phone:"",
         empresa:""
     }
     handleChange = (e) => {
@@ -120,7 +120,7 @@ export class Login extends Component {
                             
                             <div class="inputBox">
 
-                                <input type="phone" name="numero" required="" onChange={this.handleChange} />
+                                <input type="phone" name="phone" required="" onChange={this.handleChange} />
                                 <label>Telefono</label>
                             </div>
                             </Col>
@@ -145,7 +145,8 @@ export class Login extends Component {
                         
                         <div class="ma">
                             <a class="boton"
-                            onClick={()=>{ if(this.state.password===this.state.confirm_password)this.props.register({variables:{nombre: this.state.nombre, email:this.state.email, contrasena: this.state.password, id: parseInt(this.state.id), genero: this.state.genero=="Hombre"?true:false,calificacion:0.0,numCal:0,descripcion:"",linkImg:""}})
+                            onClick={()=>{ console.log(this.state); 
+                                if(this.state.password===this.state.confirm_password)this.props.register({variables:{nombre: this.state.nombre, email:this.state.email, contrasena: this.state.password, id: parseInt(this.state.id), genero: this.state.genero=="Hombre"?true:false,calificacion:0.0,numCal:0,descripcion:"",linkImg:"",empresa:this.state.empresa,phone:parseInt(this.state.phone)}})
                             }
                         }
                             >

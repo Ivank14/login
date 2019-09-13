@@ -3,7 +3,9 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import history from '../history';
 
 export class Perfil extends Component {
     render() {
@@ -44,4 +46,6 @@ export class Perfil extends Component {
     }
 }
 
-export default Perfil
+export default function(){
+    
+}

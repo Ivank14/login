@@ -27,7 +27,7 @@ module.exports = {
             };
         },
         register: async(_,{ nombre,email,contrasena,id,genero,empresa,numero },{dataSources})=>{
-            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, numero );
+            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone );
             console.log(persona);
             return{
                 success:persona? true: false,
