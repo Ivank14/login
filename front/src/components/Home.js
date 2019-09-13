@@ -15,6 +15,7 @@ class Image extends Component {
 export class Home extends Component {
     render() {
         return (
+            <>
             <ParallaxProvider>
                 <Parallax className="custom-class" y={[-20, 20]} tagOuter="figure">
                     <Image />
@@ -24,6 +25,7 @@ export class Home extends Component {
             <div>
                 <img src="../assets/galaxy.jpg"/>
             </div>
+            </>
         )
     }
 }

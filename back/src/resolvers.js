@@ -5,7 +5,7 @@ module.exports = {
       persona: (_, { id }, { dataSources }) =>
         dataSources.personaAPI.getPersona({ id: id }),
       me: (_,__,{dataSources})=>
-        dataSources.personaApi.getPersonaAct(),
+        dataSources.personaAPI.getPersonaAct(),
     },
     // cambioContrasena(contrasena: String!):Response!
     //     calificar(calificacion: FLoat!):Float!
@@ -14,9 +14,11 @@ module.exports = {
     Mutation: {
         login: async (_, { email, contrasena }, { dataSources }) => {
           const persona = await dataSources.personaAPI.login({ email, contrasena });
+          const id= await dataSources.personaAPI.getPersonaE({email:email})
           return {
               success:persona? true: false,
-              message:persona? 'logeo correcto':'Correo o conraseña erroneo'
+              message:persona? 'logeo correcto':'Correo o conraseña erroneo',
+              id: parseInt(id.dataValues.id)
             };
         },
         delete: async (_, { id }, { dataSources }) => {
@@ -26,9 +28,10 @@ module.exports = {
               message:log? 'Eliminacion correcta':'no se borro'
             };
         },
-        register: async(_,{ nombre,email,contrasena,id,genero,empresa,numero },{dataSources})=>{
+        register: async(_,{ nombre,email,contrasena,id,genero,empresa,phone },{dataSources})=>{
+          
             const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone );
-            console.log(persona);
+            //console.log(persona.dataValues);
             return{
                 success:persona? true: false,
                 message:persona? 'registro correcto':'algo fallo'

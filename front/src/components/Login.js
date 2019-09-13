@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import history from '../history';
 
 export default function Loginfunction() {
+    const client=useApolloClient();
     const [register, { data: data1 }] = useMutation(gql`
-    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$phone: Int!){
+    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$phone: String!){
         register(nombre :$nombre, email: $email, contrasena: $contrasena, id:$id, genero:$genero, empresa: $empresa, phone: $phone){
             success
             message
@@ -19,10 +20,18 @@ export default function Loginfunction() {
            login(email:$email, contrasena: $pass){
                success
                message
+               id
            }
        }
-       `);
-       console.log(data2, data1);
+       `,
+       {
+        onCompleted({ login }) {
+          localStorage.setItem('token', login.id);
+          client.writeData({ data: { isLoggedIn: true } });
+          console.log(localStorage.getItem('token'))
+        }
+      }
+       );
          if ( ((data1 && data1.register.success)||(data2 && data2.login.success)) ) 
             history.push('/perfil');
     return (
@@ -36,7 +45,7 @@ export class Login extends Component {
         password: "",
         registrado: true,
         confirm_password: "",
-        genero: "",
+        genero: "Seleccione",
         descripcion: "",
         id: "",
         nombre: "",
@@ -100,6 +109,7 @@ export class Login extends Component {
                             </Col>
                             <Col md={5}><div class="inputBox">
                                 <select name="genero" required="" onChange={this.handleChange}>
+                                <option>Seleccione</option>
                                     <option>Hombre</option>
                                     <option>Mujer</option>
                                 </select>
@@ -145,8 +155,9 @@ export class Login extends Component {
                         
                         <div class="ma">
                             <a class="boton"
-                            onClick={()=>{ console.log(this.state); 
-                                if(this.state.password===this.state.confirm_password)this.props.register({variables:{nombre: this.state.nombre, email:this.state.email, contrasena: this.state.password, id: parseInt(this.state.id), genero: this.state.genero=="Hombre"?true:false,calificacion:0.0,numCal:0,descripcion:"",linkImg:"",empresa:this.state.empresa,phone:parseInt(this.state.phone)}})
+                            onClick={()=>{ 
+                                const gen= this.state.genero=='Hombre';
+                                if(this.state.genero!='Seleccione'&&this.state.password===this.state.confirm_password)this.props.register({variables:{nombre: this.state.nombre, email:this.state.email, contrasena: this.state.password, id: parseInt(this.state.id), genero: gen,empresa:this.state.empresa,phone:this.state.phone}})
                             }
                         }
                             >
