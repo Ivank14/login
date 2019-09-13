@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import history from '../history';
-
+import '../css/Login.css';
 export default function Loginfunction() {
     const [register, { data: data1 }] = useMutation(gql`
     mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$phone: Int!){

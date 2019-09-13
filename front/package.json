@@ -17,6 +17,7 @@
     "react-datepicker": "^2.9.6",
     "react-dom": "^16.9.0",
     "react-emotion": "^10.0.0",
+    "react-parallax": "^2.2.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-scroll-parallax": "^2.1.2"
