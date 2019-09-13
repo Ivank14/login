@@ -6,8 +6,8 @@ import history from '../history';
 
 export default function Loginfunction() {
     const [register, { data: data1 }] = useMutation(gql`
-    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$linkImg: String,$id: Int!,$genero: Boolean!,$calificacion: Float,$numCal: Int,$descripcion: String){
-        register(nombre :$nombre, email: $email, contrasena: $contrasena, linkImg: $linkImg,  id:$id, genero:$genero, calificacion: $calificacion, numCal: $numCal, descripcion: $descripcion){
+    mutation Register($nombre: String!,$email: String!,$contrasena: String!,$id: Int!,$genero: Boolean!,$empresa: String!,$numero: Int!){
+        register(nombre :$nombre, email: $email, contrasena: $contrasena, id:$id, genero:$genero, empresa: $empresa, numero: $numero){
             success
             message
         }

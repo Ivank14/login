@@ -27,7 +27,7 @@ const typeDefs = gql`
         calificar(calificacion: Float!):Float!
         register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, numero: Int!):Response!
         login(email: String!,contrasena: String!):Response!
-        delete(id: String!): Response!
+        delete(id: Int!): Response!
     }
     type Response{
         success: Boolean!

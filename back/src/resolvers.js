@@ -19,8 +19,15 @@ module.exports = {
               message:persona? 'logeo correcto':'Correo o conraseña erroneo'
             };
         },
-        register: async(_,{ nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal,descripcion },{dataSources})=>{
-            const persona = await dataSources.personaAPI.createPersona({ nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal,descripcion });
+        delete: async (_, { id }, { dataSources }) => {
+          const log = await dataSources.personaAPI.delete(id);
+          return {
+              success:log? true: false,
+              message:log? 'Eliminacion correcta':'no se borro'
+            };
+        },
+        register: async(_,{ nombre,email,contrasena,id,genero,empresa,numero },{dataSources})=>{
+            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, numero );
             console.log(persona);
             return{
                 success:persona? true: false,
