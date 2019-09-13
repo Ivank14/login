@@ -13,6 +13,8 @@ const typeDefs = gql`
         genero: Boolean!
         calificacion: Float!
         numCal: Int!
+        empresa: String!
+        numero: Int!
         descripcion: String
         }
     type Query {
@@ -23,8 +25,9 @@ const typeDefs = gql`
     type Mutation{
         cambioContrasena(contrasena: String!):Response!
         calificar(calificacion: Float!):Float!
-        register(nombre: String!,email: String!,contrasena: String!,linkImg: String,id: Int!,genero: Boolean!,calificacion: Float,numCal: Int,descripcion: String):Response!
+        register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, numero: Int!):Response!
         login(email: String!,contrasena: String!):Response!
+        delete(id: String!): Response!
     }
     type Response{
         success: Boolean!
