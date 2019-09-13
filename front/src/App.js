@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import Perfil from './components/Perfil'
 
-import Loginfunction from './funciones/Loginfunction'
+import Loginfunction from './components/Login'
 import { Route, Router } from 'react-router-dom'
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
