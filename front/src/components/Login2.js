@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // export default compose(
 //     graphql(gql`mutation (...) { ... }`, { name: 'createTodo' }),
@@ -26,7 +28,9 @@ export class Login2 extends Component {
         genero: "",
         descripcion: "",
         id: "",
-        nombre: ""
+        nombre: "",
+        numero:"",
+        empresa:""
     }
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,21 +58,17 @@ export class Login2 extends Component {
                                     <label>Contraseña</label>
                                 </div>
                             </form>
-                            <div class="ma">
+                            <div className="ma">
                                 <a onClick={() => {
                                     this.props.login({ variables: { email: this.state.email, pass: this.state.password } })
                                 }}>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
                                     Ingresar
                                 </a>
                             </div>
                             <br />
                             <div>
                                 <label>¿No tienes una cuenta? </label>
-                                <a class="link"
+                                <a className="link"
                                     onClick={() => this.setState({ registrado: false })
                                     }
                                 > Registrate</a>
@@ -80,19 +80,41 @@ export class Login2 extends Component {
                 <div class="box">
                     <div >
                         <title class="title">Registrarse</title>
-                        <form >
+                        <Row>
+                            <Col md={7}>
                             <div class="inputBox">
                                 <input type="text" name="nombre" required="" onChange={this.handleChange} />
                                 <label>Nombre</label>
                             </div>
+                            </Col>
+                            <Col md={5}><div class="inputBox">
+                                <select name="genero" required="" onChange={this.handleChange}>
+                                    <option>Hombre</option>
+                                    <option>Mujer</option>
+                                </select>
+                                <label class="selectLable">Genero</label>
+                            </div></Col>
+                        </Row>
+                            
                             <div class="inputBox">
                                 <input type="text" name="id" required="" onChange={this.handleChange} />
                                 <label>Identificacion</label>
                             </div>
-                            <div class="inputBox">
+                            <Row>
+                            <Col><div class="inputBox">
                                 <input type="text" name="email" required="" onChange={this.handleChange} />
                                 <label>Email</label>
+                            </div></Col>
+                            <Col>
+                            
+                            <div class="inputBox">
+
+                                <input type="phone" name="numero" required="" onChange={this.handleChange} />
+                                <label>Telefono</label>
                             </div>
+                            </Col>
+                            </Row>
+                            
                             <div class="inputBox">
                                 <input type="password" name="password" required="" onChange={this.handleChange} />
                                 <label>Contraseña</label>
@@ -102,25 +124,21 @@ export class Login2 extends Component {
                                 <input type="password" name="confirm_password" required="" onChange={this.handleChange} />
                                 <label>Confirmar Contraseña</label>
                             </div>
+                            
+                            
                             <div class="inputBox">
-                                <select name="genero" required="" onChange={this.handleChange}>
-                                    <option>Hombre</option>
-                                    <option>Mujer</option>
-                                </select>
-                                <label class="selectLable">Genero</label>
-                            </div>
 
-                        </form>
+                                <input type="text" name="empresa" required="" onChange={this.handleChange} />
+                                <label>Empresa</label>
+                            </div>
+                        
                         <div class="ma">
                             <a class="boton"
                             onClick={()=>{ if(this.state.password===this.state.confirm_password)this.props.register({variables:{nombre: this.state.nombre, email:this.state.email, contrasena: this.state.password, id: parseInt(this.state.id), genero: this.state.genero=="Hombre"?true:false,calificacion:0.0,numCal:0,descripcion:"",linkImg:""}})
                             }
                         }
                             >
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                              
                                 Registrarse
                     </a>
                         </div>

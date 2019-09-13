@@ -78,7 +78,7 @@ body {
 
 .box .link {
   cursor: pointer;
-  color: var(--ion-color-tertiary);
+  color: #03a9f4
 }
 
 .box .title {
@@ -122,7 +122,7 @@ body {
   left: 0;
   padding: 10px 0;
   font-size: 16px;
-  color: #fff;
+  color: #ffffff;
   pointer-events: none;
   transition: .5s;
 }
@@ -132,7 +132,7 @@ body {
 .box .inputBox .selectLable {
   top: -20px;
   left: 0;
-  color: var(--ion-color-tertiary);
+  
   font-size: 12px;
 }
 
@@ -177,7 +177,7 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, var(--ion-color-secondary), var(--ion-color-tertiary));
+ 
   animation: animate1 2s linear infinite;
   animation-delay: 1s;
 }
@@ -197,7 +197,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(to bottom, var(--ion-color-secondary), var(--ion-color-tertiary));
+  
   animation: animate2 2s linear infinite;
 }
 
