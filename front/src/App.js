@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import Register from './components/Register'
+import Perfil from './components/Perfil'
 
 import Loginfunction from './funciones/Loginfunction'
 import { Route, Router } from 'react-router-dom'
@@ -28,7 +28,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router history={history}>
         <Route path="/" exact component={Loginfunction} />
-        <Route path="/path" component={Register} />
+        <Route path="/perfil" component={Perfil} />
       </Router>
     </ApolloProvider>
   );
