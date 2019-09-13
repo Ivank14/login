@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Perfil from './components/Perfil'
+import Calificar from './components/Calificar'
 
 import Loginfunction from './funciones/Loginfunction'
 import { Route, Router } from 'react-router-dom'
@@ -29,6 +30,7 @@ function App() {
       <Router history={history}>
         <Route path="/" exact component={Loginfunction} />
         <Route path="/perfil" component={Perfil} />
+        <Route path="/calificar" component={Calificar} />
       </Router>
     </ApolloProvider>
   );
