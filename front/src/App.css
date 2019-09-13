@@ -22,7 +22,10 @@
 .App-link {
   color: #61dafb;
 }
-
+html,body{
+  height: 100%;
+}
+/* div{ height: 100vh;} */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -31,6 +34,7 @@
     transform: rotate(360deg);
   }
 }
+
 .wrapper {
   position: relative;
   top: 0;
@@ -59,7 +63,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: url(Login.jpg);
+  background: url(assets/Login.jpg);
   background-size: cover;
   height: 100%;
   width: 100%;

@@ -23,13 +23,13 @@ class PersonaAPI extends DataSource {
    * instead
    */
   // const email =this.context && this.context.user ? this.context.user.email : emailArg;
-  async createPersona( nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal, descripcion, empresa, numero ) {
+  async createPersona( nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal, descripcion, empresa, phone ) {
     const existE = await  this.store.persona.findOne({where: {email: email}});
     const existI = await this.store.persona.findByPk(id);
     console.log(existE,existI);
     if ( existE || existI|| !isEmail.validate(email)) return null;
 
-    const persona = await this.store.persona.create({ id:id,nombre: nombre,email:email, contrasena: contrasena, linkImg:linkImg, nacimiento:nacimiento, genero:genero, calificacion:calificacion, numCal:numCal, descripcion:descripcion, empresa:empresa, numero: numero});
+    const persona = await this.store.persona.create({ id:id,nombre: nombre,email:email, contrasena: contrasena, linkImg:linkImg, nacimiento:nacimiento, genero:genero, calificacion:calificacion, numCal:numCal, descripcion:descripcion, empresa:empresa, phone: phone});
     
     if(persona){
       this.context.user = persona.dataValues.id;  
