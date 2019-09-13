@@ -28,7 +28,7 @@ module.exports.createStore = () => {
     numCal: SQL.INTEGER,
     descripcion: SQL.TEXT,
     empresa: SQL.TEXT,
-    numero: SQL.INTEGER
+    phone: SQL.TEXT
   });
   return { persona};
 };
