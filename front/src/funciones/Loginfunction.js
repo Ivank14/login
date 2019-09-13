@@ -5,7 +5,7 @@ import Login2 from '../components/Login2';
 import history from '../history';
 
 export default function Loginfunction() {
-    const [register, { data }] = useMutation(gql`
+    const [register, { data: data1 }] = useMutation(gql`
     mutation Register($nombre: String!,$email: String!,$contrasena: String!,$linkImg: String,$id: Int!,$genero: Boolean!,$calificacion: Float,$numCal: Int,$descripcion: String){
         register(nombre :$nombre, email: $email, contrasena: $contrasena, linkImg: $linkImg,  id:$id, genero:$genero, calificacion: $calificacion, numCal: $numCal, descripcion: $descripcion){
             success
@@ -13,7 +13,7 @@ export default function Loginfunction() {
         }
     }
     `);
-    const [login, { loading, error, data1 }] = useMutation(gql`
+    const [login, { data: data2}] = useMutation(gql`
        mutation Login($email:String!, $pass: String!){
            login(email:$email, contrasena: $pass){
                success
@@ -21,9 +21,9 @@ export default function Loginfunction() {
            }
        }
        `);
-       console.log(inf1);
-        if (data != null && ((data.register && data.register.success)||(data.login && data.login.success)) ) 
-            history.push('/path');
+       console.log(data2, data1);
+        // if (data != null && ((data.register && data.register.success)||(data.login && data.login.success)) ) 
+        //     history.push('/path');
     return (
         <Login2 login={login} register={register}/>
     )
