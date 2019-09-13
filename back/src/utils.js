@@ -27,6 +27,8 @@ module.exports.createStore = () => {
     calificacion: SQL.FLOAT,
     numCal: SQL.INTEGER,
     descripcion: SQL.TEXT,
+    empresa: SQL.TEXT,
+    numero: SQL.INTEGER
   });
   return { persona};
 };

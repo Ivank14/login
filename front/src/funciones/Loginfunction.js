@@ -22,8 +22,8 @@ export default function Loginfunction() {
        }
        `);
        console.log(data2, data1);
-        // if (data != null && ((data.register && data.register.success)||(data.login && data.login.success)) ) 
-        //     history.push('/path');
+         if ( ((data1 && data1.register.success)||(data2 && data2.login.success)) ) 
+            history.push('/path');
     return (
         <Login2 login={login} register={register}/>
     )
