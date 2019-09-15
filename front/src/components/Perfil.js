@@ -14,12 +14,25 @@ import StarRating from 'react-svg-star-rating'
 
 export class Circle extends Component {
 
+    state={
+        value:this.props.value,
+        enable:this.props.enable
+    }
+    change=(e)=>{
+        
+        
+        this.setState({value:parseInt(e.target.value)})
+        this.props.change(this.props.name, this.state.value);
+    }
+
     
         constructor(props) {
           super(props);
         }
-  render() {
+        
+        render() {
       return ( 
+          <div>
       <svg viewBox="0 0 36 36" class={"circular-chart "+this.props.className}>
       <path class="circle-bg"
         d="M18 2.0845
@@ -27,13 +40,15 @@ export class Circle extends Component {
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       <path class="circle" style={{stroke: this.props.color}}
-        stroke-dasharray={ this.props.value +", 100"}
+        stroke-dasharray={ this.state.value +", 100"}
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       <text x="18" y="20.35" class="percentage">{this.props.name}</text>
     </svg>
+    <input value={this.state.value}  onChange={this.change} disabled={!this.props.enable}/> 
+    </div>
     );}
 }
 export default function Perfil(props) {
@@ -55,6 +70,13 @@ export default function Perfil(props) {
     const MUTATION = gql`
     mutation CambiarDesc ($nuevaDescripcion: String!){
         cambiarDescripcion(id: ${uid}, nuevaDescripcion: $nuevaDescripcion){
+        id
+        success
+        }
+    }`
+    const MUTATION_CIRCULITOS = gql`
+    mutation CambiarSkills ($nuevasSkills: String!){
+        cambiarSkills(id: ${uid}, nuevasSkills: $nuevasSkills){
         id
         success
         }
@@ -81,17 +103,25 @@ export default function Perfil(props) {
     // formatoString: 'r;html;py;js;rct;graph'
     function skillsStringtoObject(stringSkills){
         var array=stringSkills.split(';');
-        return {skills:{
+        persona.skills={
             r:array[0],
             html:array[1],
             py:array[2],
             js:array[3],
             rct:array[4],
             graph: array[5]
-        }}
+        }
     }
     function skillsObjectToString(){
-        
+        if(!persona.skills) persona.skills= {
+            r:0,
+            html:0,
+            py:0,
+            js:0,
+            rct:0,
+            graph: 0
+
+        };
         return ''+ persona.skills.r+ ";"
         + persona.skills.html+ ";"
         + persona.skills.py+ ";"
@@ -100,22 +130,40 @@ export default function Perfil(props) {
         + ";"+ persona.skills.graph;
         
     }
+    function changeCirculos(name,value){
+        if(!persona.skills) persona.skills= {
+            r:0,
+            html:0,
+            py:0,
+            js:0,
+            rct:0,
+            graph: 0
+
+        };
+        persona.skills[name]=value; 
+        console.log(persona.skills)
+    }
     // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
     const [update, {data: data2}] = useMutation(MUTATION)
+    const [update2, {data: data3}] = useMutation(MUTATION_CIRCULITOS)
     const change = () => {
         if (!enable)
             setState({ enable: !enable, changer: 'save' });
         else{
             setState({ enable: !enable, changer: 'edit' });
             update({variables:{nuevaDescripcion: persona.descripcion}})
+            update2({variables:{nuevasSkills: skillsObjectToString()}})
         }
     }
 
     const setDesc = (e) => {
-        const a = e.target.value
-        persona.descripcion = a
+        const { name, value } = e.target;
+        
+        persona[name] = value;
+        
+        
         
         setState({ enable: enable, changer: changer });
     }
@@ -123,8 +171,18 @@ export default function Perfil(props) {
     if (loading) return <h1>Cargando...</h1>
     if (error) { console.log(error);}
     
-    console.log(data2)
+    
     if(data.persona) persona = data.persona;
+    if(!persona.skills) persona.skills= {
+        r:0,
+        html:0,
+        py:0,
+        js:0,
+        rct:0,
+        graph: 0
+
+    };
+    // console.log(data)
     return (
         <div class='perfil-module'>
         <Container bsPrefix="grid"  >
@@ -182,24 +240,25 @@ export default function Perfil(props) {
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle name='Py' value= {50} color='#306998' className="centrado-v" ></Circle>
+                                        <Circle name='Py' value= {persona.skills.py} color='#306998' className="centrado-v" name="py" change={changeCirculos} enable={enable}></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle name='Js' value= {50} color=' #f0db4f ' className="centrado-v"></Circle>                                          
+                                        <Circle name='Js' value= {persona.skills.js} color=' #f0db4f ' className="centrado-v" name="js" change={changeCirculos} enable={enable}></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle name='R' value= {50} color='#BFC2C5' className="centrado-v"></Circle>                                          
+                                        <Circle name='R' value= {persona.skills.r} color='#BFC2C5' className="centrado-v" name="r" change={changeCirculos}></Circle>
+                                                                              
                                         </Col>
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle name='Html' value= {50} color='#e44d26' className="centrado-v"></Circle>
+                                        <Circle name='Html' value= {persona.skills.html} color='#e44d26' className="centrado-v" name="html" change={changeCirculos} enable={enable}></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle name='Rct'value= {50} color='#61dbfb' className="centrado-v"></Circle>                                          
+                                        <Circle name='Rct'value= {persona.skills.rct} color='#61dbfb' className="centrado-v" name="rct" change={changeCirculos} enable={enable}></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle name='Gql' value= {50} color='rgb(229, 53, 171)' className="centrado-v"></Circle>                                          
+                                        <Circle name='Gql' value= {persona.skills.graph} color='rgb(229, 53, 171)' className="centrado-v" name="graph" change={changeCirculos} enable={enable}></Circle>                                          
                                         </Col>
                                     </Row>
                                 </Col>
@@ -207,7 +266,7 @@ export default function Perfil(props) {
                             <Row className = 'tb-1 desc' style={{ height: '25%', color: '#61dafb' }}>
                                 <Col>
                                     <h5>Descripcion:</h5>
-                                    <textarea value={persona.descripcion} disabled={!enable} onChange={setDesc} class='big-text' />
+                                    <textarea name="descripcion" value={persona.descripcion} disabled={!enable} onChange={setDesc} class='big-text' />
                                     <MDBIcon icon={changer}  onClick={change} className='editer'/>                                        
                                 </Col>
                             </Row>
