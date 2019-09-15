@@ -44,7 +44,6 @@ class PersonaAPI extends DataSource {
     if (!this.context || !this.context.user) return false;
     const userId = this.context.user;
     const persona = await this.store.persona.findByPk(userId);
-    console.log(userId)
     return persona;
   }
   async getPersona({id}) {
@@ -96,6 +95,16 @@ class PersonaAPI extends DataSource {
   async nuevaDescripcion({ id,nuevaDescripcion }) {
     const changed = await this.store.persona.update({
       descripcion: nuevaDescripcion
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    return changed ;
+  } 
+  async nuevasSkills({ id,nuevasSkills }) {
+    const changed = await this.store.persona.update({
+      skills: nuevasSkills
     },{
       where:{id:id},
       returning:true,

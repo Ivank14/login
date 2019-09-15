@@ -1,10 +1,38 @@
 .calificar-module {
 
+height: 100%;
+
+.lateral{
+  margin-left: 0%;
+  padding-left: 0;
+  height: 100%;
+}
+.content{
+  background-color: #c6c8ca;
+  padding-top: 15px;
+}
+.content div{
+  color:white;
+  font-size: 20px;
+}
+.Iconos_Perfiles{
+  width:   40px;
+  height:  40px;
+  background-image: url("https://www.portafolio.co/files/opinion_author_image/uploads/2017/03/16/58ca96e130ba2.png");
+  background-size: 40px 40px;
+  position: absolute;
+  right: 10px;
+  top:5px;
+}
+.iteml{
+  height: 50px;
+}
 .card-profile{
     background: black;
-    width: 55% ;
+    width: 70% ;
     overflow: hidden;
-    height: 90%;
+    height: 80%;
+    border:0 !important;
 }
 
 .profile-image{
@@ -14,13 +42,13 @@
     max-width: 100%;
 }
 .profile{
-    margin-top: -20%;
-    height: 50%;
+    margin-top: -50%;
+    height: 70%;
     z-index: 10;
 }
 .profile .calificacion{
-    background: white;
-    padding: 20px;
+    background: linear-gradient(rgb(255,255,255,0),rgb(255,255,255),rgb(255,255,255),rgb(255,255,255) );
+    padding-top: 30%;
 }
 .calificacion h1{
     text-align: center;
@@ -30,126 +58,113 @@
     background: linear-gradient(rgb(25, 3, 119,0.5),rgb(25, 3, 119),rgb(25, 3, 119),rgb(25, 3, 119))
 }
 
-  
-  #content.on {
-    -webkit-animation-name: in-out;
-    animation-name: in-out;
-    -webkit-animation-duration: 0.7s;
-    animation-duration: 0.7s;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-  }
-  
-   input {
-    box-sizing: border-box;
-    width: 30px;
-    height: 30px;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    background: none;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 400;
-    font-family: Roboto;
-    outline: 0;
-    -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-      padding 0.2s;
-    transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-      padding 0.2s;
-    -webkit-transition-delay: 0.4s;
-    transition-delay: 0.4s;
-    right: 32px;
-    position: absolute;
-  }
-  
-  .search {
-    background: none;
-    position: absolute;
-    top: -20px;
-    right: 32px;
-    height: 50px;
-    width: 50px;
-    padding: 0;
-    border-radius: 100%;
-    outline: 0;
-    border: 0;
-    color: inherit;
-    cursor: pointer;
 
-  }
-  
-  .search:before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 4px;
-    background-color: #fff;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    -webkit-transition: 0.2s ease-in-out;
-    transition: 0.2s ease-in-out;
-    margin-top: 26px;
-    margin-left: 17px;
-   
-  }
-  
-  .close {
-    top: -8px;
-    right: 34px;
-  }
-  
-  .close:before {
-    content: "";
-    position: absolute;
-    width: 27px;
-    height: 4px;
-    margin-top: -1px;
-    margin-left: -13px;
-    background-color: #fff;
-   
+  form{
+    input {
+      box-sizing: border-box;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: none;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      font-family: Roboto;
+      outline: 0;
+      -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
+        padding 0.2s;
+      transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
+        padding 0.2s;
+      -webkit-transition-delay: 0.4s;
+      transition-delay: 0.4s;
+      right: 32px;
+      position: absolute;
+    }
     
-  }
-  
-  .close:after {
-    content: "";
-    position: absolute;
-    width: 27px;
-    height: 4px;
-    background-color: #fff;
-    margin-top: -1px;
-    margin-left: -13px;
-    cursor: pointer;
+    .search {
+      background: none;
+      position: absolute;
+      right: 32px;
+      height: 50px;
+      width: 50px;
+      padding: 0;
+      border-radius: 100%;
+      outline: 0;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
 
+    }
     
-
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    -webkit-transition: 0.2s ease-in-out;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .square {
+    .search:before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background-color: #fff;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transition: 0.2s ease-in-out;
+      transition: 0.2s ease-in-out;
+      margin-top: 5px;
+      margin-left: 17px;
     
-    box-sizing: border-box;
-    padding: 0 40px 0 10px;
-    width: 88%;
-    height: 35px;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-    background: none;
-    color: #fff;
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: 400;
-    outline: 0;
-    -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
-      padding 0.2s;
-    transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, 
-      padding 0.2s;
-    -webkit-transition-delay: 0.4s, 0s, 0.4s;
-    transition-delay: 0.4s, 0s, 0.4s;
+    }
+    
+    .close {
+      top: -8px;
+      right: 34px;
+    }
+    
+    .close:before {
+      content: "";
+      position: absolute;
+      width: 27px;
+      height: 3px;
+      margin-top: 13px;
+      margin-left: -13px;
+      background-color: #fff;
+    
+      
+    }
+    
+    .close:after {
+      content: "";
+      position: absolute;
+      width: 27px;
+      height: 3px;
+      background-color: #fff;
+      margin-top: 13px;
+      margin-left: -13px;
+      cursor: pointer;
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transition: 0.2s ease-in-out;
+      transition: 0.2s ease-in-out;
+    }
+    
+    .square {
+      
+      box-sizing: border-box;
+      padding: 0 40px 0 10px;
+      width: 88%;
+      height: 35px;
+      border: 2px solid #ffffff;
+      border-radius: 20px;
+      background: none;
+      color: #fff;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 400;
+      outline: 0;
+      -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
+        padding 0.2s;
+      transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, 
+        padding 0.2s;
+      -webkit-transition-delay: 0.4s, 0s, 0.4s;
+      transition-delay: 0.4s, 0s, 0.4s;
+    }
   }
 }

@@ -36,6 +36,13 @@ export class Circle extends Component {
     </svg>
     );}
 }
+
+function round5(x)
+{
+    var res = (x % 0.5) >= 0.25 ? parseInt(x / 0.5) * 0.5 + 0.5 : parseInt(x / 0.5) * 0.5;
+    console.log(res);
+    return res;
+}
 export default function Perfil(props) {
     const uid=props.uid
     const QUERY = gql`
@@ -50,6 +57,8 @@ export default function Perfil(props) {
         phone
         descripcion
         calificacion
+        numCal
+        skills
         }
     }`
     const MUTATION = gql`
@@ -68,7 +77,39 @@ export default function Perfil(props) {
         empresa: '',
         phone: '',
         descripcion: 'hola',
-        calificacion:''
+        calificacion:'',
+        numCal:'',
+        skills:{
+            r:0,
+            html:0,
+            py:0,
+            js:0,
+            rct:0,
+            graph: 0
+
+        }
+    }
+    // formatoString: 'r;html;py;js;rct;graph'
+    function skillsStringtoObject(stringSkills){
+        var array=stringSkills.split(';');
+        return {skills:{
+            r:array[0],
+            html:array[1],
+            py:array[2],
+            js:array[3],
+            rct:array[4],
+            graph: array[5]
+        }}
+    }
+    function skillsObjectToString(){
+        
+        return ''+ persona.skills.r+ ";"
+        + persona.skills.html+ ";"
+        + persona.skills.py+ ";"
+        + persona.skills.js
+        + ";"+ persona.skills.rct
+        + ";"+ persona.skills.graph;
+        
     }
     // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
@@ -111,8 +152,8 @@ export default function Perfil(props) {
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
                                 <b>{persona.calificacion}</b>
-                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
-                       
+                            <StarRating initialRating= {round5(persona.calificacion)} isReadOnly ={true} size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' />
+                                <p># Calificaciones: {persona.numCal}</p>
                        
                             </Col>
                         </Row>

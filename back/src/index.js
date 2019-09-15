@@ -10,7 +10,6 @@ const PersonaAPI = require('./datasources/user');
 const server = new ApolloServer({
   context: async ({ req }) => {
     const auth = (req.headers && req.headers.authorization) || '';
-    console.log(auth)
     return { user: auth};
   },
   typeDefs,

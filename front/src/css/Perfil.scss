@@ -53,16 +53,20 @@
 .profile .calificacion{
     background: white;
     padding: 20px;
-    text-align: center
+    text-align: center;
+    font-Size: 1.3vw;
 }
 .calificacion h1{
     text-align: center;
     font-size: 2.5vw;
 }
 .calificacion b{  
-  padding: 10px;
+  padding: 20px;
   text-align: center;
   font-size: 4vw;
+}
+.calificacion  div{
+  margin-top: 30px
 }
 .profile .opciones{
     background: linear-gradient(rgb(25, 3, 119,0.3),rgb(25, 3, 119,0.5),rgb(25, 3, 119))

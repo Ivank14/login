@@ -2,8 +2,8 @@ module.exports = {
     Query: {
       personas: (_, __, { dataSources }) =>
         dataSources.personaAPI.getPersonas(),
-      persona: (_, { id }, { dataSources }) =>
-        dataSources.personaAPI.getPersona({ id: id }),
+      persona: (_, { id }, { dataSources }) =>{ console.log(id)
+        dataSources.personaAPI.getPersona({ id: id })},
       me: (_,__,{dataSources})=>
         dataSources.personaAPI.getPersonaAct(),
     },
@@ -31,7 +31,6 @@ module.exports = {
         register: async(_,{ nombre,email,contrasena,id,genero,empresa,phone },{dataSources})=>{
           
             const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone );
-            //console.log(persona.dataValues);
             return{
                 success:persona? true: false,
                 message:persona? 'registro correcto':'algo fallo',
@@ -43,6 +42,14 @@ module.exports = {
           return {
               success:log? true: false,
               message:log? 'Descripcion cambiada':'Paila',
+              id: id
+            };
+        },
+        cambiarDescripcion: async(_, { id, nuevasSkills }, { dataSources })=>{
+          const log = await dataSources.personaAPI.nuevasSkills({id,nuevasSkills});
+          return {
+              success:log? true: false,
+              message:log? 'Skills cambiadas':'Paila',
               id: id
             };
         }
