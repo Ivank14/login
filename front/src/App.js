@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './App.css';
+import './App.scss';
 import Perfil from './components/Perfil'
 import Calificar from './components/Calificar'
 

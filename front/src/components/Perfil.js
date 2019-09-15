@@ -97,7 +97,7 @@ export default function Perfil(props) {
         <div class='perfil-module'>
         <Container bsPrefix="grid"  >
             <Row  >
-                <Col md={4}>
+                <Col md={4} className='fill'>
                     <Card style= {{background:'black'}}>
                         <div class='profile-image'>
                             <img src = "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"/>
@@ -116,7 +116,7 @@ export default function Perfil(props) {
                         </Row>
                     </Card>
                 </Col>
-                <Col md={8} className="lp-l">
+                <Col md={8} className="lp-l fill">
                     <Card >
                         <div class="card-header">
                             <h2>Profile Info</h2>
