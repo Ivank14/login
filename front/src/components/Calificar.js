@@ -8,6 +8,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import gql from 'graphql-tag'
 import StarRating from 'react-svg-star-rating'
 import '../css/Calificar.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 var persona = {
     id: '',
@@ -46,10 +47,11 @@ const expand = () => {
 
     const {loading, data}= useQuery(QUERY)
     if(loading) return <h1>Cargando...</h1>
-    return ( <ListGroup variant="flush">{data.personas.map((persona)=>(
+    return ( <PerfectScrollbar>
+    <ListGroup variant="flush">{data.personas.map((persona)=>(
                 <ListGroup.Item>{persona.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
     ))}
-    </ListGroup>)
+    </ListGroup></PerfectScrollbar>)
     
 }
 
