@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import StarRating from 'react-svg-star-rating'
-import '../css/Calificar.css';
+import '../css/Calificar.scss';
 
 var persona = {
     id: '',
@@ -37,6 +37,7 @@ export class Calificar extends Component {
         }
 
         return (
+            <div class='calificar-module'>
             <Container bsPrefix='grid'>
                 <Row >
                     <Col md={6}>
@@ -77,7 +78,7 @@ export class Calificar extends Component {
                 </Row>
 
             </Container>
-
+            </div>
         )
     }
 }

@@ -6,10 +6,11 @@ import Card from 'react-bootstrap/Card'
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import history from '../history';
-import '../css/Perfil.css';
+import '../css/Perfil.scss';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
+import StarRating from 'react-svg-star-rating'
 
 export class Circle extends Component {
 
@@ -82,6 +83,7 @@ export default function Perfil(props) {
     console.log(data)
     if(data.persona) persona = data.persona;
     return (
+        <div class='perfil-module'>
         <Container bsPrefix="grid"  >
             <Row  >
                 <Col md={4}>
@@ -168,5 +170,6 @@ export default function Perfil(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }
