@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
-
+import StarRating from 'react-svg-star-rating'
 
 export class Calificar extends Component {
     render() {
@@ -34,15 +34,11 @@ export class Calificar extends Component {
 
                         <Card>
 
-                            <Row><Col><div class="rating">
-                                {/* {
-                                    if(this.state.calificacion) return <Estrellitas cal={}/>
-                                    return <>
-                                } */}
-{/* <span onClick={oClick(1)}>☆</span><span onClick={oClick(2)}>☆</span><span onClick={oClick(3)}>☆</span><span onClick={oClick(4)}>☆</span><span onClick={oClick(5)}>☆</span> */}
-<Estrellitas/>
+                            <Row><Col>
 
-</div></Col></Row>
+<StarRating size="30" count="5" innerRadius="25" activeColor= '#ffd055' isHalfRating ='true' handleOnClick = {(rating) => {console.log(rating)}}/>
+
+</Col></Row>
                             <Row><Col>card imagen</Col></Row>
                             <Row><Col>calificar</Col></Row>
                         </Card>

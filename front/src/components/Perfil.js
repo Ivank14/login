@@ -9,7 +9,7 @@ import history from '../history';
 import '../css/Perfil.css';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
-import Knob from 'react-canvas-knob';
+import StarRating from 'react-svg-star-rating'
 
 export class Circle extends Component {
 
@@ -89,6 +89,7 @@ export default function Perfil() {
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
+                                <StarRating size="30" count="5" innerRadius="25" activeColor= '#ffd055' isHalfRating ='true' handleOnClick = {(rating) => {console.log(rating)}}/>
                             </Col>
                         </Row>
                     </Card>
