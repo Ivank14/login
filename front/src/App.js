@@ -6,12 +6,13 @@ import Calificar from './components/Calificar'
 
 import Loginfunction from './components/Login'
 import Home from './components/Home'
-import { Route, Router } from 'react-router-dom'
+import { Route, Router, Redirect } from 'react-router-dom'
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import history from './history';
+import gql from 'graphql-tag';
 
 const cache = new InMemoryCache();
 
@@ -30,13 +31,16 @@ cache.writeData({
   },
 });
 
+
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <div class="wrapper">
       <Router history={history} >
-        <Route path="/" exact component={Loginfunction} />
-        <Route path="/perfil" component={Perfil} />
+        <Route path="/" exact render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Loginfunction/>)}/>
+
+        <Route path="/perfil"   render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/calificar" component={Calificar} />
         <Route path="/home" component={Home} />
       </Router>

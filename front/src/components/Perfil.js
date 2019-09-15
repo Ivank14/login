@@ -9,10 +9,11 @@ import history from '../history';
 import '../css/Perfil.css';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
-import StarRating from 'react-svg-star-rating'
+import {Redirect } from 'react-router-dom'
 
 export class Circle extends Component {
 
+    
         constructor(props) {
           super(props);
         }
@@ -34,10 +35,11 @@ export class Circle extends Component {
     </svg>
     );}
 }
-export default function Perfil() {
+export default function Perfil(props) {
+    const uid=props.uid
     const QUERY = gql`
     {
-        me{
+        persona(id: ${uid}){
         id
         nombre
         email
@@ -58,6 +60,7 @@ export default function Perfil() {
         phone: '',
         descripcion: 'hola',
     }
+    console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
     const change = () => {
@@ -74,8 +77,10 @@ export default function Perfil() {
     }
 
     if (loading) return <h1>Cargando...</h1>
-    if (error) { console.log(error); return }
-    if(data.me) persona = data.me;
+    if (error) { console.log(error); return <Redirect to="/perfil"/>}
+    
+    console.log(data)
+    if(data.persona) persona = data.persona;
     return (
         <Container bsPrefix="grid"  >
             <Row  >
@@ -92,7 +97,7 @@ export default function Perfil() {
                                 <h1>{persona.nombre}</h1>
                         
                                 <div class='centrado-h fit'  >
-                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
+                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
                         </div>
                             </Col>
                         </Row>

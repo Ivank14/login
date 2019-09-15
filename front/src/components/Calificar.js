@@ -41,7 +41,7 @@ export class Calificar extends Component {
                 <Row >
                     <Col md={6}>
                         
-                        <form style = {{height: '50px'}} id="content" class='centrar-h'>
+                        <form style = {{height: '50px'}} id="content" class='centrar-h forma'>
                             <input type="text" name="input" class="input" id="search-input" />
                             <button type="reset" class="search" id="search-btn" onClick={expand}></button>
                         </form>
@@ -65,12 +65,12 @@ export class Calificar extends Component {
                                 </Col>
                                 <Col md={10} className="calificacion">
                                     <h1>{persona.nombre}</h1>
-                                    <StarRating size="15" count="5" innerRadius="25" activeColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
+                                    <StarRating size="15" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
                                 </Col>
                             </Row>
                         </Card>
                         <div class='centrado-h fit'  >
-                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
+                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
                         </div>
 
                     </Col>
