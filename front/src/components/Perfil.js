@@ -67,6 +67,15 @@ export default function Perfil(props) {
         empresa: '',
         phone: '',
         descripcion: 'hola',
+        skils:{
+            r:0,
+            html:0,
+            py:0,
+            js:0,
+            rct:0,
+            graph: 0
+
+        }
     }
     // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)

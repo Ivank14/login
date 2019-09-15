@@ -15,7 +15,8 @@ const typeDefs = gql`
         numCal: Int!
         empresa: String!
         phone: String!
-        descripcion: String
+        descripcion: String,
+        skills: String
         }
     type Query {
         personas: [Persona]!
