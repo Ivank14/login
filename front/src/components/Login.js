@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import gql from 'graphql-tag';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import history from '../history';
-import '../css/Login.css';
+import '../css/Login.scss';
 export default function Loginfunction() {
     const client = useApolloClient();
     const [register, { data: data1 }] = useMutation(gql`

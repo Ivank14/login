@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import gql from 'graphql-tag'
 import StarRating from 'react-svg-star-rating'
-import '../css/Calificar.css';
+import '../css/Calificar.scss';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 var persona = {
@@ -67,6 +67,7 @@ export class Calificar extends Component {
         }
 
         return (
+            <div class='calificar-module'>
             <Container bsPrefix='grid'>
                 
                 <Row >
@@ -109,7 +110,7 @@ export class Calificar extends Component {
                 </Row>
 
             </Container>
-
+            </div>
         )
     }
 }

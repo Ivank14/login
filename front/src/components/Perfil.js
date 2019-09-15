@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import history from '../history';
-import '../css/Perfil.css';
+import '../css/Perfil.scss';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
@@ -32,7 +32,7 @@ export class Circle extends Component {
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">JS</text>
+      <text x="18" y="20.35" class="percentage">{this.props.name}</text>
     </svg>
     );}
 }
@@ -94,9 +94,10 @@ export default function Perfil(props) {
     console.log(data2)
     if(data.persona) persona = data.persona;
     return (
+        <div class='perfil-module'>
         <Container bsPrefix="grid"  >
             <Row  >
-                <Col md={4}>
+                <Col md={4} className='fill'>
                     <Card style= {{background:'black'}}>
                         <div class='profile-image'>
                             <img src = "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"/>
@@ -107,12 +108,15 @@ export default function Perfil(props) {
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
-                                <StarRating size="15" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
+                        
+                                <div class='centrado-h fit'  >
+                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
+                        </div>
                             </Col>
                         </Row>
                     </Card>
                 </Col>
-                <Col md={8} className="lp-l">
+                <Col md={8} className="lp-l fill">
                     <Card >
                         <div class="card-header">
                             <h2>Profile Info</h2>
@@ -146,29 +150,29 @@ export default function Perfil(props) {
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v" ></Circle>
+                                        <Circle name='Py' value= {50} color='#306998' className="centrado-v" ></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Js' value= {50} color=' #f0db4f ' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='R' value= {50} color='#BFC2C5' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>
+                                        <Circle name='Html' value= {50} color='#e44d26' className="centrado-v"></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Rct'value= {50} color='#61dbfb' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Gql' value= {50} color='rgb(229, 53, 171)' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
                                 </Col>
                             </Row>
-                            <Row className = 'tb-1' style={{ height: '25%', color: '#61dafb' }}>
+                            <Row className = 'tb-1 desc' style={{ height: '25%', color: '#61dafb' }}>
                                 <Col>
                                     <h5>Descripcion:</h5>
                                     <textarea value={persona.descripcion} disabled={!enable} onChange={setDesc} class='big-text' />
@@ -180,5 +184,6 @@ export default function Perfil(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }

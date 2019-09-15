@@ -26,7 +26,8 @@
     "react-scripts": "3.1.1",
     "react-scroll-parallax": "^2.1.2",
     "react-svg-star-rating": "^1.0.2",
-    "react-transform-hmr": "^1.0.4"
+    "react-transform-hmr": "^1.0.4",
+    "sass": "^1.22.12"
   },
   "scripts": {
     "start": "react-scripts start",
