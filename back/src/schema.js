@@ -30,7 +30,7 @@ const typeDefs = gql`
         login(email: String!,contrasena: String!):Response!
         delete(id: Int!): Response!
         cambiarDescripcion(id: Int!, nuevaDescripcion: String!):Response!
-        cambiarSkils(id: Int!, nuevasSkills: String!):Response!
+        cambiarSkills(id: Int!, nuevasSkills: String!):Response!
     }
     type Response{
         success: Boolean!
