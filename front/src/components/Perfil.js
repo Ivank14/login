@@ -17,7 +17,8 @@ export class Circle extends Component {
           super(props);
         }
   render() {
-      return ( <svg viewBox="0 0 36 36" class="circular-chart">
+      return ( 
+      <svg viewBox="0 0 36 36" class={"circular-chart "+this.props.className}>
       <path class="circle-bg"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
@@ -122,30 +123,30 @@ export default function Perfil() {
                                     <MDBIcon icon='phone'/><h4>{persona.phone}</h4><br/>
                                 </Row>
                                 </Col>
-                                <Col md={6}>
-                                    <Row style={{height: '20%'}}>
+                                <Col md={6} className="skills">
+                                    <Row style={{height: '10%'}}>
                                         <b>Skills</b>
                                     </Row>
-                                    <Row style={{height: '40%'}}>
+                                    <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>
+                                        <Circle value= {50} color='cyan' className="centrado-v" ></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>                                          
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>                                          
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
-                                    <Row style={{height: '40%'}}>
+                                    <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>                                          
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan'></Circle>                                          
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
                                 </Col>

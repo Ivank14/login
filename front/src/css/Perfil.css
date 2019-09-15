@@ -62,6 +62,12 @@
 .circulo{
     height: 100% !important;
 }
+.skills{
+    font-size: 3vh;
+}
+.skills .col-md-4{
+    padding: 0 !important;
+}
 
 
 
