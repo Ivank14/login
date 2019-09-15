@@ -9,12 +9,15 @@ import history from '../history';
 import '../css/Perfil.css';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
+import {Redirect } from 'react-router-dom'
 
 
-export default function () {
+export default function (props) {
+    const uid=props.uid
+    
     const QUERY = gql`
     {
-        me{
+        persona(id: ${uid}){
         id
         nombre
         email
@@ -35,6 +38,7 @@ export default function () {
         phone: '',
         descripcion: 'hola',
     }
+    console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
     const change = () => {
@@ -51,8 +55,10 @@ export default function () {
     }
 
     if (loading) return <h1>Cargando...</h1>
-    if (error) { console.log(error); return }
-    if(data.me) persona = data.me;
+    if (error) { console.log(error); return <Redirect to="/perfil"/>}
+    
+    console.log(data)
+    if(data.persona) persona = data.persona;
     return (
         <Container bsPrefix="grid"  >
             <Row  >
