@@ -49,6 +49,7 @@ export default function Perfil(props) {
         empresa
         phone
         descripcion
+        calificacion
         }
     }`
     const MUTATION = gql`
@@ -67,6 +68,7 @@ export default function Perfil(props) {
         empresa: '',
         phone: '',
         descripcion: 'hola',
+        calificacion:''
     }
     // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
@@ -108,7 +110,7 @@ export default function Perfil(props) {
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
-                        
+                                <b>{persona.calificacion}</b>
                             <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
                        
                        
