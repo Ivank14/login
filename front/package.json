@@ -15,6 +15,7 @@
     "react": "^16.9.0",
     "react-apollo": "^3.1.0",
     "react-bootstrap": "^1.0.0-beta.12",
+    "react-canvas-knob": "^0.5.0",
     "react-datepicker": "^2.9.6",
     "react-dom": "^16.9.0",
     "react-emotion": "^10.0.0",
@@ -22,6 +23,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-scroll-parallax": "^2.1.2",
+    "react-transform-hmr": "^1.0.4",
     "react-svg-star-rating": "^1.0.2"
   },
   "scripts": {
@@ -44,5 +46,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-react-transform": "^3.0.0",
+    "react-transform-catch-errors": "^1.0.2",
+    "redbox-react": "^1.6.0"
   }
 }
