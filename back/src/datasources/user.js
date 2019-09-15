@@ -44,6 +44,7 @@ class PersonaAPI extends DataSource {
     if (!this.context || !this.context.user) return false;
     const userId = this.context.user;
     const persona = await this.store.persona.findByPk(userId);
+    console.log(userId)
     return persona;
   }
   async getPersona({id}) {
