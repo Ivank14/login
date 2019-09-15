@@ -90,7 +90,10 @@ export default function Perfil() {
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
-                                <StarRating size="30" count="5" innerRadius="25" activeColor= '#ffd055' isHalfRating ='true' handleOnClick = {(rating) => {console.log(rating)}}/>
+                        
+                                <div class='centrado-h fit'  >
+                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
+                        </div>
                             </Col>
                         </Row>
                     </Card>
