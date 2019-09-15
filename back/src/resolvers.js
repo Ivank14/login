@@ -45,6 +45,14 @@ module.exports = {
               message:log? 'Descripcion cambiada':'Paila',
               id: id
             };
+        },
+        cambiarDescripcion: async(_, { id, nuevasSkills }, { dataSources })=>{
+          const log = await dataSources.personaAPI.nuevasSkills({id,nuevasSkills});
+          return {
+              success:log? true: false,
+              message:log? 'Skills cambiadas':'Paila',
+              id: id
+            };
         }
         // calificar: async (_,{calificacion},{dataSources})=>{
         //   const actuan = await dataSources.personaAPI.

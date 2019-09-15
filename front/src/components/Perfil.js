@@ -49,6 +49,7 @@ export default function Perfil(props) {
         empresa
         phone
         descripcion
+        skills
         }
     }`
     const MUTATION = gql`
@@ -67,7 +68,7 @@ export default function Perfil(props) {
         empresa: '',
         phone: '',
         descripcion: 'hola',
-        skils:{
+        skills:{
             r:0,
             html:0,
             py:0,
@@ -76,6 +77,28 @@ export default function Perfil(props) {
             graph: 0
 
         }
+    }
+    // formatoString: 'r;html;py;js;rct;graph'
+    function skillsStringtoObject(stringSkills){
+        var array=stringSkills.split(';');
+        return {skills:{
+            r:array[0],
+            html:array[1],
+            py:array[2],
+            js:array[3],
+            rct:array[4],
+            graph: array[5]
+        }}
+    }
+    function skillsObjectToString(){
+        
+        return ''+ persona.skills.r+ ";"
+        + persona.skills.html+ ";"
+        + persona.skills.py+ ";"
+        + persona.skills.js
+        + ";"+ persona.skills.rct
+        + ";"+ persona.skills.graph;
+        
     }
     // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)

@@ -103,6 +103,16 @@ class PersonaAPI extends DataSource {
     });
     return changed ;
   } 
+  async nuevasSkills({ id,nuevasSkills }) {
+    const changed = await this.store.persona.update({
+      skills: nuevasSkills
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    return changed ;
+  } 
 }
 
 module.exports = PersonaAPI;
