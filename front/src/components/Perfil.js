@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import history from '../history';
-import '../css/Perfil.css';
+import '../css/Perfil.scss';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
@@ -51,6 +51,13 @@ export default function Perfil(props) {
         descripcion
         }
     }`
+    const MUTATION = gql`
+    mutation CambiarDesc ($nuevaDescripcion: String!){
+        cambiarDescripcion(id: ${uid}, nuevaDescripcion: $nuevaDescripcion){
+        id
+        success
+        }
+    }`
     var persona = {
         id: '',
         nombre: '',
@@ -61,28 +68,33 @@ export default function Perfil(props) {
         phone: '',
         descripcion: 'hola',
     }
-    console.log(localStorage.getItem('token'))
+    // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
+    const [update, {data: data2}] = useMutation(MUTATION)
     const change = () => {
         if (!enable)
             setState({ enable: !enable, changer: 'save' });
-        else
+        else{
             setState({ enable: !enable, changer: 'edit' });
+            update({variables:{nuevaDescripcion: persona.descripcion}})
+        }
     }
 
     const setDesc = (e) => {
         const a = e.target.value
         persona.descripcion = a
+        
         setState({ enable: enable, changer: changer });
     }
 
     if (loading) return <h1>Cargando...</h1>
     if (error) { console.log(error); return <Redirect to="/perfil"/>}
     
-    console.log(data)
+    console.log(data2)
     if(data.persona) persona = data.persona;
     return (
+        <div class='perfil-module'>
         <Container bsPrefix="grid"  >
             <Row  >
                 <Col md={4}>
@@ -172,5 +184,6 @@ export default function Perfil(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }
