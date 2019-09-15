@@ -10,6 +10,7 @@ import '../css/Perfil.css';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
+import StarRating from 'react-svg-star-rating'
 
 export class Circle extends Component {
 
@@ -31,7 +32,7 @@ export class Circle extends Component {
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">JS</text>
+      <text x="18" y="20.35" class="percentage">{this.props.name}</text>
     </svg>
     );}
 }
@@ -137,29 +138,29 @@ export default function Perfil(props) {
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v" ></Circle>
+                                        <Circle name='Py' value= {50} color='#306998' className="centrado-v" ></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Js' value= {50} color=' #f0db4f ' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='R' value= {50} color='#BFC2C5' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
                                     <Row style={{height: '45%'}}>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>
+                                        <Circle name='Html' value= {50} color='#e44d26' className="centrado-v"></Circle>
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Rct'value= {50} color='#61dbfb' className="centrado-v"></Circle>                                          
                                         </Col>
                                         <Col md={4} >
-                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        <Circle name='Gql' value= {50} color='rgb(229, 53, 171)' className="centrado-v"></Circle>                                          
                                         </Col>
                                     </Row>
                                 </Col>
                             </Row>
-                            <Row className = 'tb-1' style={{ height: '25%', color: '#61dafb' }}>
+                            <Row className = 'tb-1 desc' style={{ height: '25%', color: '#61dafb' }}>
                                 <Col>
                                     <h5>Descripcion:</h5>
                                     <textarea value={persona.descripcion} disabled={!enable} onChange={setDesc} class='big-text' />
