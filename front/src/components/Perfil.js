@@ -10,6 +10,7 @@ import '../css/Perfil.css';
 import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
+import StarRating from 'react-svg-star-rating'
 
 export class Circle extends Component {
 
@@ -50,6 +51,13 @@ export default function Perfil(props) {
         descripcion
         }
     }`
+    const MUTATION = gql`
+    mutation CambiarDesc ($nuevaDescripcion: String!){
+        cambiarDescripcion(id: ${uid}, nuevaDescripcion: $nuevaDescripcion){
+        id
+        success
+        }
+    }`
     var persona = {
         id: '',
         nombre: '',
@@ -63,17 +71,21 @@ export default function Perfil(props) {
     console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
+    const [update, {data: data2}] = useMutation(MUTATION, {onCompleted(d){console.log("dataMutationDescripcion:", d)}})
     const change = () => {
         if (!enable)
             setState({ enable: !enable, changer: 'save' });
-        else
+        else{
             setState({ enable: !enable, changer: 'edit' });
+            update({variables:{nuevaDescripcion: persona.descripcion}})
+        }
     }
 
     const setDesc = (e) => {
         const a = e.target.value
         persona.descripcion = a
-        setState({ enable: enable, changer: changer });
+        
+        // setState({desc: });
     }
 
     if (loading) return <h1>Cargando...</h1>
