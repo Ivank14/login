@@ -1,0 +1,61 @@
+.big-text{
+    height: 80%;
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    padding: 0px 20px 0px 10px;
+    border:0;
+    background: transparent;
+}
+.editer{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    right: 35px;
+    top: 0px;
+    color: grey;
+    border: 0;
+    font-size: 1.5rem
+}
+.iconos{
+    color: black ;  
+    padding: 0 25px 0 15px ;
+}
+.iconos .row{
+    height: 16.6%
+}
+.iconos h4{
+    position: absolute;
+    left: 3.5em;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 2vw;
+}
+.iconos .fa{
+    font-size: 1.5rem;
+}
+.card .card-header {
+    height: 15%;
+}
+.profile-image{
+    height: 70%;
+}
+.profile-image img{
+    max-width: 100%;
+}
+.profile{
+    margin-top: -20%;
+    height: 50%;
+    z-index: 10;
+}
+.profile .calificacion{
+    background: white;
+    padding: 20px;
+}
+.calificacion h1{
+    text-align: center;
+    font-size: 3vw;
+}
+.profile .opciones{
+    background: linear-gradient(rgb(25, 3, 119,0.5),rgb(25, 3, 119),rgb(25, 3, 119),rgb(25, 3, 119))
+}
