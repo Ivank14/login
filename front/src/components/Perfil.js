@@ -68,10 +68,10 @@ export default function Perfil(props) {
         phone: '',
         descripcion: 'hola',
     }
-    console.log(localStorage.getItem('token'))
+    // console.log(localStorage.getItem('token'))
     const { data, loading, error } = useQuery(QUERY)
     const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
-    const [update, {data: data2}] = useMutation(MUTATION, {onCompleted(d){console.log("dataMutationDescripcion:", d)}})
+    const [update, {data: data2}] = useMutation(MUTATION)
     const change = () => {
         if (!enable)
             setState({ enable: !enable, changer: 'save' });
@@ -85,13 +85,13 @@ export default function Perfil(props) {
         const a = e.target.value
         persona.descripcion = a
         
-        // setState({desc: });
+        setState({ enable: enable, changer: changer });
     }
 
     if (loading) return <h1>Cargando...</h1>
     if (error) { console.log(error); return <Redirect to="/perfil"/>}
     
-    console.log(data)
+    console.log(data2)
     if(data.persona) persona = data.persona;
     return (
         <Container bsPrefix="grid"  >
