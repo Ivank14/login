@@ -92,6 +92,16 @@ class PersonaAPI extends DataSource {
     const log = await this.store.persona.destroy({where:{id:id}})
     return log;
   }
+  async nuevaDescripcion({ id,nuevaDescripcion }) {
+    const changed = await this.store.persona.update({
+      descripcion: nuevaDescripcion
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    return changed ;
+  } 
 }
 
 module.exports = PersonaAPI;

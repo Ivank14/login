@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import history from '../history';
 
 export class Perfil extends Component {
@@ -60,23 +60,36 @@ export default function () {
         descripcion
         }
     }`
+    const MUTATION = gql`
+    mutation cambio($id:Int!, $nuevaDescripcion: String!){
+        cambiarDescripcion(id:$id, nuevaDescripcion: $nuevaDescripcion){
+            success
+            message
+            id
+        }
+    }
+    `
     const { data, loading, error } = useQuery(QUERY)
-    
+    const [cambio, { data: data2}] = useMutation(MUTATION)
     if (loading) return <h1>Cargando...</h1>
     if (error) {console.log(error)
-    return}
+    return<h1>Paila...</h1>}
 
     console.log(data)
     //const [{enable,desc}, setState]= useState({enable: false, desc: data.me.descripcion})
-    const [desc, setState]= useState(data.me.descripcion)
-    // const funct=()=>{
-    //     setState({enable: !enable})
-    // }
-    
-    const setDesc =(e)=>{
-        const a= e.target.value
-        setState({desc: a});
+    const [enable, setState]= useState(false)
+    const funct=()=>{
+        setState(enable=>{
+            
+            return !enable;
+        });
     }
+    var contenido="";
+    
+    // const setDesc =(e)=>{
+        
+    //     setState(e);
+    // }
     return (
         <div class='wrapper'>
             <Container fluid={true} style={{ height: '100%' }}>
@@ -108,12 +121,12 @@ export default function () {
                                 <h2>Genero: {data.me.genero ? <span>Hombre</span> : <span>Mujer</span>}</h2></Col></Row>
                             <Row style={{ height: '20%' }}>
                                 <Col><button 
-                                /*onClick={funct}*/
+                                onClick={funct}
                                 />
                                 <h3>Descripcion:</h3>
-                                <input value={desc} 
-                            // disabled={!enable} 
-                            onChange={setDesc}/>
+                                <input
+                                value={data.me.descripcion}  disabled={!enable} onChange={e=>contenido=e.target.value}
+                            />
                                 </Col>
                     </Row>
                     </Card>
