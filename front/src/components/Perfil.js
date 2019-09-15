@@ -89,7 +89,7 @@ export default function Perfil(props) {
     }
 
     if (loading) return <h1>Cargando...</h1>
-    if (error) { console.log(error); return <Redirect to="/perfil"/>}
+    if (error) { console.log(error);}
     
     console.log(data2)
     if(data.persona) persona = data.persona;

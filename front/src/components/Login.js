@@ -18,10 +18,11 @@ export default function Loginfunction() {
     `,
         {
             onCompleted({ register }) {
-                console.log(register.id);
-                localStorage.setItem('token', register.id);
+                console.log(register);
+                
+                if(register.success){localStorage.setItem('token', register.id);
                 client.writeData({ data: { isLoggedIn: true } });
-                if(register.success) history.push('/perfil');
+                history.push('/perfil');}
             }
         }
     );
@@ -37,9 +38,11 @@ export default function Loginfunction() {
         {
             onCompleted({ login }) {
  //               console.log(login.id)
+                
+                if(login.success){
                 localStorage.setItem('token', login.id);
                 client.writeData({ data: { isLoggedIn: true } });
-                if(login.success)history.push('/perfil');
+                history.push('/perfil');}
             }
         }
     );

@@ -34,7 +34,8 @@ module.exports = {
             //console.log(persona.dataValues);
             return{
                 success:persona? true: false,
-                message:persona? 'registro correcto':'algo fallo'
+                message:persona? 'registro correcto':'algo fallo',
+                id: parseInt(id)
               };
         },
         cambiarDescripcion: async(_, { id, nuevaDescripcion }, { dataSources })=>{
