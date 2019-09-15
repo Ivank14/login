@@ -13,11 +13,7 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import history from './history';
 
-
 const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'http://localhost:4000'
-})
 
 const client = new ApolloClient({
   cache,
@@ -37,12 +33,14 @@ cache.writeData({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router history={history}>
+      <div class="wrapper">
+      <Router history={history} >
         <Route path="/" exact component={Loginfunction} />
         <Route path="/perfil" component={Perfil} />
         <Route path="/calificar" component={Calificar} />
         <Route path="/home" component={Home} />
       </Router>
+      </div>
     </ApolloProvider>
   );
 }

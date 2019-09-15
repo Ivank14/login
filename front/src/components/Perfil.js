@@ -6,45 +6,10 @@ import Card from 'react-bootstrap/Card'
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import history from '../history';
+import '../css/Perfil.css';
+import {MDBIcon} from 'mdbreact'
+import "mdbreact/dist/css/mdb.css"
 
-export class Perfil extends Component {
-    render() {
-        return (
-            <div class='wrapper'>
-                <Container fluid={true} style={{ height: '100%' }}>
-                    <Row style={{ height: '100%' }}>
-                        <Col md={4}>
-                            <Card style={{ height: '100%' }}>
-
-
-                                <Row className='h-50'>
-                                    <Col>holas</Col>
-                                </Row>
-                                <Row className='h-50'>
-                                    <Col md={3}>
-                                        ess
-                        </Col>
-                                    <Col md={9}>
-                                        <h1>Ivank Montes</h1>
-                                        <h4>1016098147</h4>
-                                    </Col>
-                                </Row>
-                            </Card>
-                        </Col>
-                        <Col md={8} style={{ height: '100%' }}>
-                            <Card style={{ height: '100%' }}>
-                                <Row style={{ height: '30%' }}> <Col>dddd</Col></Row>
-                                <Row style={{ height: '50%', color: '#61dafb' }}><Col>kkk</Col></Row>
-                                <Row style={{ height: '20%' }}><Col>qqqq</Col></Row>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-
-        )
-    }
-}
 
 export default function () {
     const QUERY = gql`
@@ -60,67 +25,94 @@ export default function () {
         descripcion
         }
     }`
-    const { data, loading, error } = useQuery(QUERY)
-    
-    if (loading) return <h1>Cargando...</h1>
-    if (error) {console.log(error)
-    return}
-
-    console.log(data)
-    //const [{enable,desc}, setState]= useState({enable: false, desc: data.me.descripcion})
-    const [desc, setState]= useState(data.me.descripcion)
-    // const funct=()=>{
-    //     setState({enable: !enable})
-    // }
-    
-    const setDesc =(e)=>{
-        const a= e.target.value
-        setState({desc: a});
+    var persona = {
+        id: '',
+        nombre: '',
+        email: '',
+        contrasena: '',
+        genero: '',
+        empresa: '',
+        phone: '',
+        descripcion: 'hola',
     }
+    const { data, loading, error } = useQuery(QUERY)
+    const [{ enable, changer }, setState] = useState({ enable: false, changer: 'edit' })
+    const change = () => {
+        if (!enable)
+            setState({ enable: !enable, changer: 'save' });
+        else
+            setState({ enable: !enable, changer: 'edit' });
+    }
+
+    const setDesc = (e) => {
+        const a = e.target.value
+        persona.descripcion = a
+        setState({ enable: enable, changer: changer });
+    }
+
+    if (loading) return <h1>Cargando...</h1>
+    if (error) { console.log(error); return }
+    if(data.me) persona = data.me;
     return (
-        <div class='wrapper'>
-            <Container fluid={true} style={{ height: '100%' }}>
-                <Row style={{ height: '100%' }}>
-                    <Col md={4}>
-                        <Card style={{ height: '100%' }}>
+        <Container bsPrefix="grid"  >
+            <Row  >
+                <Col md={4}>
+                    <Card style= {{background:'black'}}>
+                        <div class='profile-image'>
+                            <img src = "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"/>
+                        </div>
+                        <Row className='profile' >
+                            <Col md={2} className = "opciones">
 
-
-                            <Row className='h-50'>
-                                <Col>holas</Col>
+                            </Col>
+                            <Col md={10} className = "calificacion">
+                                <h1>{persona.nombre}</h1>
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
+                <Col md={8} className="lp-l">
+                    <Card >
+                        <div class="card-header">
+                            <h2>Profile Info</h2>
+                        </div>
+                        <div class='card-body'>
+                            
+                            <Row style={{ height: '72%', color: '#61dafb' }}>
+                                <Col className="rb-1 iconos" md={6}>    
+                                <Row>
+                                    <MDBIcon icon='id-card'/><h4>{persona.id}</h4><br></br> 
+                                </Row>    
+                                <Row>
+                                    <MDBIcon icon='at'/><h4>{persona.email}</h4><br></br>
+                                </Row> 
+                                <Row>
+                                    <MDBIcon icon='briefcase'/><h4>{persona.empresa}</h4><br></br>                                    
+                                </Row> 
+                                <Row>
+                                    <MDBIcon icon='birthday-cake'/><h4>{}h</h4><br></br>                                                      
+                                </Row>  
+                                <Row>
+                                    <MDBIcon icon='transgender'/><h4>{persona.genero ? <span>Hombre</span> : <span>Mujer</span>}</h4><br></br>
+                                </Row> 
+                                <Row>
+                                    <MDBIcon icon='phone'/><h4>{persona.phone}</h4><br></br>
+                                </Row>
+                                </Col>
+                                <Col md={6}>
+                                </Col>
                             </Row>
-                            <Row className='h-50'>
-                                <Col md={3}>
-
-                                </Col>
-                                <Col md={9}>
-                                    <h1>{data.me.nombre}</h1>
-                                    <h4>{data.me.id}</h4>
+                            <Row className = 'tb-1' style={{ height: '25%', color: '#61dafb' }}>
+                                <Col>
+                                    <h5>Descripcion:</h5>
+                                    <textarea value={persona.descripcion} disabled={!enable} onChange={setDesc} class='big-text' />
+                                    <MDBIcon icon={changer}  onClick={change} className='editer'/>                                        
                                 </Col>
                             </Row>
-                        </Card>
-                    </Col>
-                    <Col md={8} style={{ height: '100%' }}>
-                        <Card style={{ height: '100%' }}>
-                            <Row style={{ height: '30%' }}> <Col><h1>Email: {data.me.email}</h1>
-                                <h1>Telefono: {data.me.phone}</h1></Col></Row>
-                            <Row style={{ height: '50%', color: '#61dafb' }}><Col><h2>Empresa: {data.me.empresa}</h2>
-                                <h2>Edad:</h2>
-                                <h2>Genero: {data.me.genero ? <span>Hombre</span> : <span>Mujer</span>}</h2></Col></Row>
-                            <Row style={{ height: '20%' }}>
-                                <Col><button 
-                                /*onClick={funct}*/
-                                />
-                                <h3>Descripcion:</h3>
-                                <input value={desc} 
-                            // disabled={!enable} 
-                            onChange={setDesc}/>
-                                </Col>
-                    </Row>
+                        </div>
                     </Card>
                 </Col>
             </Row>
-            </Container>
-            </div>
-
-            )
-    }
+        </Container>
+    )
+}
