@@ -11,10 +11,32 @@ import {MDBIcon} from 'mdbreact'
 import "mdbreact/dist/css/mdb.css"
 import {Redirect } from 'react-router-dom'
 
+export class Circle extends Component {
 
-export default function (props) {
-    const uid=props.uid
     
+        constructor(props) {
+          super(props);
+        }
+  render() {
+      return ( 
+      <svg viewBox="0 0 36 36" class={"circular-chart "+this.props.className}>
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <path class="circle" style={{stroke: this.props.color}}
+        stroke-dasharray={ this.props.value +", 100"}
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <text x="18" y="20.35" class="percentage">JS</text>
+    </svg>
+    );}
+}
+export default function Perfil(props) {
+    const uid=props.uid
     const QUERY = gql`
     {
         persona(id: ${uid}){
@@ -73,6 +95,7 @@ export default function (props) {
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
+                                <StarRating size="30" count="5" innerRadius="25" activeColor= '#ffd055' isHalfRating ='true' handleOnClick = {(rating) => {console.log(rating)}}/>
                             </Col>
                         </Row>
                     </Card>
@@ -87,25 +110,50 @@ export default function (props) {
                             <Row style={{ height: '72%', color: '#61dafb' }}>
                                 <Col className="rb-1 iconos" md={6}>    
                                 <Row>
-                                    <MDBIcon icon='id-card'/><h4>{persona.id}</h4><br></br> 
+                                    <MDBIcon icon='id-card'/><h4>{persona.id}</h4><br/>
                                 </Row>    
                                 <Row>
-                                    <MDBIcon icon='at'/><h4>{persona.email}</h4><br></br>
+                                    <MDBIcon icon='at'/><h4>{persona.email}</h4><br/>
                                 </Row> 
                                 <Row>
-                                    <MDBIcon icon='briefcase'/><h4>{persona.empresa}</h4><br></br>                                    
+                                    <MDBIcon icon='briefcase'/><h4>{persona.empresa}</h4><br/>                                    
                                 </Row> 
                                 <Row>
-                                    <MDBIcon icon='birthday-cake'/><h4>{}h</h4><br></br>                                                      
+                                    <MDBIcon icon='birthday-cake'/><h4>{}h</h4><br/>                                                      
                                 </Row>  
                                 <Row>
-                                    <MDBIcon icon='transgender'/><h4>{persona.genero ? <span>Hombre</span> : <span>Mujer</span>}</h4><br></br>
+                                    <MDBIcon icon='transgender'/><h4>{persona.genero ? <span>Hombre</span> : <span>Mujer</span>}</h4><br/>
                                 </Row> 
                                 <Row>
-                                    <MDBIcon icon='phone'/><h4>{persona.phone}</h4><br></br>
+                                    <MDBIcon icon='phone'/><h4>{persona.phone}</h4><br/>
                                 </Row>
                                 </Col>
-                                <Col md={6}>
+                                <Col md={6} className="skills">
+                                    <Row style={{height: '10%'}}>
+                                        <b>Skills</b>
+                                    </Row>
+                                    <Row style={{height: '45%'}}>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v" ></Circle>
+                                        </Col>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        </Col>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        </Col>
+                                    </Row>
+                                    <Row style={{height: '45%'}}>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>
+                                        </Col>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        </Col>
+                                        <Col md={4} >
+                                        <Circle value= {50} color='cyan' className="centrado-v"></Circle>                                          
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
                             <Row className = 'tb-1' style={{ height: '25%', color: '#61dafb' }}>
