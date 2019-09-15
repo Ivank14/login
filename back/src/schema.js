@@ -28,6 +28,7 @@ const typeDefs = gql`
         register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, phone: String!):Response!
         login(email: String!,contrasena: String!):Response!
         delete(id: Int!): Response!
+        cambiarDescripcion(id: Int!, nuevaDescripcion: String!):Response!
     }
     type Response{
         success: Boolean!

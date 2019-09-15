@@ -37,6 +37,14 @@ module.exports = {
                 message:persona? 'registro correcto':'algo fallo'
               };
         },
+        cambiarDescripcion: async(_, { id, nuevaDescripcion }, { dataSources })=>{
+          const log = await dataSources.personaAPI.nuevaDescripcion({id,nuevaDescripcion});
+          return {
+              success:log,
+              message:log? 'Descripcion cambiada':'Paila',
+              id: id
+            };
+        }
         // calificar: async (_,{calificacion},{dataSources})=>{
         //   const actuan = await dataSources.personaAPI.
         // }
