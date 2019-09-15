@@ -118,9 +118,9 @@ export default function Perfil(props) {
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
                         
-                                <div class='centrado-h fit'  >
-                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} className='fit' />
-                        </div>
+                            <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055'hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
+                       
+                       
                             </Col>
                         </Row>
                     </Card>
