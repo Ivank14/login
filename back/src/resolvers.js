@@ -40,7 +40,7 @@ module.exports = {
         cambiarDescripcion: async(_, { id, nuevaDescripcion }, { dataSources })=>{
           const log = await dataSources.personaAPI.nuevaDescripcion({id,nuevaDescripcion});
           return {
-              success:log,
+              success:log? true: false,
               message:log? 'Descripcion cambiada':'Paila',
               id: id
             };
