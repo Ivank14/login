@@ -65,8 +65,8 @@
   .search {
     background: none;
     position: absolute;
-    top: 20px;
-    right: 15px;
+    top: -20px;
+    right: 32px;
     height: 50px;
     width: 50px;
     padding: 0;
@@ -87,15 +87,16 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    margin-top: 26px;
-    margin-left: 17px;
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
+    margin-top: 26px;
+    margin-left: 17px;
+   
   }
   
   .close {
-    top: 18px;
-    right: -20px;
+    top: -8px;
+    right: 34px;
   }
   
   .close:before {
@@ -106,6 +107,7 @@
     margin-top: -1px;
     margin-left: -13px;
     background-color: #fff;
+   
     
   }
   
@@ -118,9 +120,13 @@
     margin-top: -1px;
     margin-left: -13px;
     cursor: pointer;
-    -webkit-transform: rotate(-45deg);
+
+    
+
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
   }
   
   .square {
