@@ -98,6 +98,7 @@ export default function Calificar(props) {
         // }`,{variables:{id:parseInt(uid)}})
     const seleccion = (id, nom, cal) => {
 
+        
         setPersona({id:id,nombre:nom, calificacion:cal})
         // console.log('fuellamado')
         // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
@@ -143,9 +144,9 @@ export default function Calificar(props) {
                                     <Col className="calificacion" >
                                         <h1>{nombre}</h1>
                                         <b>{calificacion.toFixed(1)}</b>
-                                        <div class='centrado-h fit'  >
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />   
-                            </div>
+                                        
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
+                                
                                     </Col>
                                 </Row>
                                 <Row>
