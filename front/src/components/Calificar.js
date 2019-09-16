@@ -153,7 +153,12 @@ export default function Calificar(props) {
                                 </Row>
                             </Card>
                         </Col>
-                        
+                        <Col md={8} >
+                            <Card className='calificar' >
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
+                                
+                            </Card>
+                        </Col>
                     </Row>
 
                 </Container>
