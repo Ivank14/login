@@ -10,29 +10,8 @@ import StarRating from 'react-svg-star-rating'
 import '../css/Calificar.scss';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
-var persona = {
-    id: 0,
-    nombre: '',
-    email: '',
-    contrasena: '',
-    genero: '',
-    empresa: '',
-    phone: '',
-    descripcion: 'hola',
-}
-const QUERY = gql`
-    {
-        personas{
-        id
-        nombre
-        email
-        contrasena
-        genero
-        empresa
-        phone
-        descripcion
-        }
-    }`
+
+
 
 // buscador https://codepen.io/MilanMilosev/pen/JdgRpB
 
@@ -48,8 +27,7 @@ function Lista(props) {
         document.getElementById("search-input").classList.toggle("square");
         setState('');
     };
-    const { loading, data } = useQuery(QUERY)
-    if (loading) return <h1>Cargando...</h1>
+    
     return (
         <div>
             <form style={{ height: '50px' }} id="content" class='centrar-h forma'>
@@ -57,8 +35,8 @@ function Lista(props) {
                 <button type="reset" class="search" id="search-btn" onClick={expand}></button>
             </form>
             <PerfectScrollbar>
-                <ListGroup variant="flush">{data.personas.filter(ele => (ele.nombre.toLowerCase().includes(filt.toLowerCase()))).map((persona) => (
-                    <ListGroup.Item action variant='dark' className="iteml"  value={persona.id} onClick={props.seleccion(persona.id)}>{persona.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
+                <ListGroup variant="flush">{props.data.personas.filter(ele => (ele.nombre.toLowerCase().includes(filt.toLowerCase()))).map((personaA) => (
+                    <ListGroup.Item action variant='dark' className="iteml"  value={personaA.id} onClick={()=>props.seleccion(personaA.id,personaA.nombre)}>{personaA.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
                 ))}
                 </ListGroup>
             </PerfectScrollbar>
@@ -69,33 +47,53 @@ function Lista(props) {
 
 
 export default function Calificar(props) {
+    const QUERY = gql`
+    {
+        personas{
+        id
+        nombre
+        
+        }
+    }`
+
+    const { loading, data } = useQuery(QUERY)
+    var persona = {
+        
+        nombre: '',
+       
+    }
+    const [{
+        
+        nombre,
+        
+    }, setPersona]= useState(persona)
+    if (loading) return <h1>Cargando...</h1>
+
+    
+
     var uid=props.uid
         console.log(uid)
-        const { data, loading, error, refetch } = useQuery(gql`
+        // const { data, loading, error, refetch } = useQuery(gql`
         
-            query Persona($id:Int!){
-            persona(id: $id){
-            id
-            nombre
-            email
-            contrasena
-            genero
-            empresa
-            phone
-            descripcion
-            calificacion
-            numCal
-            skills
-            }
-        }`,{variables:{id:parseInt(uid)}})
-    const seleccion = (id) => {
+        //     query Persona($id:Int!){
+        //     persona(id: $id){
+            
+        //     nombre
+            
+        //     calificacion
+        //     numCal
+            
+        //     }
+        // }`,{variables:{id:parseInt(uid)}})
+    const seleccion = (id, nom) => {
 
-        
-        console.log('fuellamado')
-        refetch({variables:{uid:parseInt(id)}}).then(datos=>{
-            persona=datos.data.persona;
-            console.log(datos.data.persona);
-        });
+        setPersona({nombre:nom})
+        // console.log('fuellamado')
+        // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
+        //     if(datos.loading) return;
+        //     persona=datos.data.persona;
+        //     console.log(datos.data.persona);
+        //});
     }
 
 
@@ -106,17 +104,17 @@ export default function Calificar(props) {
         // const oClick = (value) => {
         //     this.setState({ calificacion: value })
         // }
-        if (loading) return <h1>Cargando...</h1>
-        if (error) { console.log(error);}
-        console.log(data);
-        persona = data?data.persona:{};
+        // if (loading) return <h1>Cargando...</h1>
+        // if (error) { console.log(error);}
+        // console.log(data);
+        // persona = data?data.persona:{};
         return (
             <div class='calificar-module'>
                 <Container bsPrefix='lateral'>
 
                     <Row >
                         <Col md={3} className='lateral content'>
-                            <Lista uid= {uid} seleccion={seleccion} />
+                            <Lista  seleccion={seleccion} data={data}/>
                         </Col>
                         <Col md={5} >
                             <Card className='card-profile centrado' >
@@ -125,7 +123,7 @@ export default function Calificar(props) {
                                 </div>
                                 <Row className='profile'>
                                     <Col className="calificacion">
-                                        <h1>{persona.nombre}</h1>
+                                        <h1>{nombre}</h1>
                                     </Col>
                                 </Row>
                             </Card>
