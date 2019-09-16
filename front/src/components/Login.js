@@ -112,11 +112,11 @@ export class Login extends Component {
                     </div>
                     <br />
                     <div>
-                        <label>¿No tienes una cuenta? </label>
+                        <label><font color='white'>¿No tienes una cuenta? </font></label>
                         <a className="link"
                             onClick={() => this.setState({ registrado: false })
                             }
-                        > Registrate</a>
+                        > <font color='green'>Registrate</font></a>
                     </div>
                 </div>)
         return (
@@ -190,10 +190,10 @@ export class Login extends Component {
                     </div>
                     <br />
                     <div>
-                        <label>¿Ya tienes una cuenta? </label>
+                        <label> <font color='white'>¿Ya tienes una cuenta? </font></label>
                         <a className="link" 
                             onClick={() => this.setState({ registrado: true })}
-                        > Ingresa</a>
+                        > <font color='green'>Ingresa</font></a>
                     </div>
                 </div>
             </div>
