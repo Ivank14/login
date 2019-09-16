@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { render } from "react-dom";
 import { Parallax } from "react-parallax";
 import "../css/Home.scss"
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
 
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center"
 };
 const insideStyles = {
-  background: "white",
+  textAlign: "center",
+  fontFamily: "sans-serif",
   padding: 20,
   position: "absolute",
   top: "50%",
@@ -16,11 +20,11 @@ const insideStyles = {
   transform: "translate(-50%,-50%)"
 };
 const image1 =
-  "https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&w=1778&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D";
+  "https://www.halt.org/wp-content/uploads/2017/03/types-of-lawyers.jpg";
 const image2 =
-  "https://img00.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg";
+  "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/califacacion-empresas-noticias-infocif.jpg";
 const image3 =
-  "https://brightcove04pmdo-a.akamaihd.net/5104226627001/5104226627001_5297440765001_5280261645001-vs.jpg?pubId=5104226627001&videoId=5280261645001";
+  "https://noticias.infocif.es/sites/default/files/styles/n1000x540/public/i/a/califacacion-empresas-noticias-infocif.jpg";
 const image4 =
   "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/empire-state-building-black-and-white-square-format-john-farnan.jpg";
 
@@ -32,26 +36,48 @@ export class Home extends Component {
       <div class='curve'>
         <section>
         <div class= 'content'>
-            <h1>probando</h1>
+            <h1>Forma parte de la mejor comunidad en tres pasos</h1>
         </div>
         </section>
       </div>
       <div style={styles}>
+
+      <div class= 'a'> holaaaaa</div> 
         <Parallax bgImage={image1} strength={500}>
           <div style={{ height: 500 }}>
-            <div style={insideStyles}>HTML inside the parallax</div>
+            <div style={insideStyles} class='profile-image2'>
+              <img src="http://www.seitelettronica.it/wp-content/uploads/2015/08/profilo-fb-grigio-1.jpg" />                    
+          </div>
+          <div  class= 'content1' >
+            <h1> 1) Crea tu perfíl</h1>                 
+          </div>
           </div>
         </Parallax>
-        <h1>| | |</h1>
-        <Parallax bgImage={image3} blur={{ min: -1, max: 3 }}>
-          <div style={{ height: 500 }}>
-            <div style={insideStyles}>Dynamic Blur</div>
+        <div class= 'a'> holaaaaa</div>    
+
+        <Parallax bgImage={image2} strength={-100}
+        renderLayer={percentage => (
+          <div>
+            <div
+              style={{
+                position: "absolute",
+                background: `rgba(245, 240, 66, ${percentage * 1})`,
+                left: "50%",
+                top: "50%",
+                borderRadius: "50%",
+                transform: "translate(-50%,-50%)",
+                width: percentage * 500,
+                height: percentage * 500
+              }}
+            />
           </div>
-        </Parallax>
-        <h1>| | |</h1>
-        <Parallax bgImage={image2} strength={-100}>
-          <div style={{ height: 500 }}>
-            <div style={insideStyles}>Reverse direction</div>
+        )}>
+
+          <div  style={{ height: 500 }} class="container">
+          <div style={insideStyles}>
+            <h1> 2) califica usuarios</h1>                 
+          </div>
+
           </div>
         </Parallax>
         <h1>| | |</h1>
@@ -76,7 +102,7 @@ export class Home extends Component {
           )}
         >
           <div style={{ height: 500 }}>
-            <div style={insideStyles}>renderProp</div>
+            <div style={insideStyles} > <font color='white' size='15' >monitorea tus skills</font> </div>
           </div>
         </Parallax>
         <div style={{ height: 500 }} />
