@@ -133,6 +133,7 @@ export default function Calificar(props) {
                         <Col md={3} className='lateral content'>
                             <Lista  seleccion={seleccion} data={data}/>
                         </Col>
+                        
                         <Col md={5} >
                             <Card className='card-profile centrado' >
                                 <div class='profile-image'>
@@ -143,8 +144,7 @@ export default function Calificar(props) {
                                         <h1>{nombre}</h1>
                                         <b>{calificacion.toFixed(1)}</b>
                                         <div class='centrado-h fit'  >
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
-                                
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />   
                             </div>
                                     </Col>
                                 </Row>
@@ -152,12 +152,8 @@ export default function Calificar(props) {
                                 
                                 </Row>
                             </Card>
-                        </Col>
-                        <Col md={8} >
-                            <Card className='calificar' >
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
-                                
-                            </Card>
+
+
                         </Col>
                     </Row>
 
