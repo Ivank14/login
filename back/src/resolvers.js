@@ -2,8 +2,8 @@ module.exports = {
     Query: {
       personas: (_, __, { dataSources }) =>
         dataSources.personaAPI.getPersonas(),
-      persona: (_, { id }, { dataSources }) =>{ console.log(id)
-        dataSources.personaAPI.getPersona({ id: id })},
+      persona: (_, { id }, { dataSources }) =>
+        dataSources.personaAPI.getPersona({ id: id }),
       me: (_,__,{dataSources})=>
         dataSources.personaAPI.getPersonaAct(),
     },
@@ -40,22 +40,22 @@ module.exports = {
         cambiarDescripcion: async(_, { id, nuevaDescripcion }, { dataSources })=>{
           const log = await dataSources.personaAPI.nuevaDescripcion({id,nuevaDescripcion});
           return {
-              success:log? true: false,
-              message:log? 'Descripcion cambiada':'Paila',
-              id: id
-            };
+            success:log? true: false,
+            message:log? 'Descripcion cambiada':'Paila',
+            id: id
+          };
         },
-        cambiarDescripcion: async(_, { id, nuevasSkills }, { dataSources })=>{
+        cambiarSkills: async(_, { id, nuevasSkills }, { dataSources })=>{
           const log = await dataSources.personaAPI.nuevasSkills({id,nuevasSkills});
           return {
               success:log? true: false,
               message:log? 'Skills cambiadas':'Paila',
               id: id
             };
+        },
+        calificar: async (_,{id, calificacion},{dataSources})=>{
+          return await dataSources.personaAPI.calificar(id, calificacion)
         }
-        // calificar: async (_,{calificacion},{dataSources})=>{
-        //   const actuan = await dataSources.personaAPI.
-        // }
         // bookTrips: async (_, { launchIds }, { dataSources }) => {
         //     const results = await dataSources.userAPI.bookTrips({ launchIds });
         //     const launches = await dataSources.launchAPI.getLaunchesByIds({

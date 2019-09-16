@@ -17,12 +17,15 @@ export default function Loginfunction() {
     }
     `,
         {
-            onCompleted({ register }) {
-                console.log(register);
-                
-                if(register.success){localStorage.setItem('token', register.id);
-                client.writeData({ data: { isLoggedIn: true } });
-                history.push('/perfil');}
+            onCompleted({ register }) 
+            {
+
+                if (register.success) 
+                {
+                    localStorage.setItem('token', register.id);
+                    client.writeData({ data: { isLoggedIn: true } });
+                    history.push('/perfil');
+                }
             }
         }
     );
@@ -36,13 +39,14 @@ export default function Loginfunction() {
        }
        `,
         {
-            onCompleted({ login }) {
- //               console.log(login.id)
-                
-                if(login.success){
-                localStorage.setItem('token', login.id);
-                client.writeData({ data: { isLoggedIn: true } });
-                history.push('/perfil');}
+            onCompleted({ login }) 
+            {
+                if (login.success) 
+                {
+                    localStorage.setItem('token', login.id);
+                    client.writeData({ data: { isLoggedIn: true } });
+                    history.push('/perfil');
+                }
             }
         }
     );
@@ -57,9 +61,9 @@ export default function Loginfunction() {
     //     history.push('/perfil');
     // }
 
-        return (
-            <Login login={login} register={register} />
-        )
+    return (
+        <Login login={login} register={register} />
+    )
 }
 
 export class Login extends Component {
