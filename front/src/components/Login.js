@@ -19,12 +19,11 @@ export default function Loginfunction() {
         {
             onCompleted({ register }) 
             {
-
                 if (register.success) 
                 {
                     localStorage.setItem('token', register.id);
                     client.writeData({ data: { isLoggedIn: true } });
-                    history.push('/perfil');
+                    window.location.reload();
                 }
             }
         }
@@ -45,7 +44,7 @@ export default function Loginfunction() {
                 {
                     localStorage.setItem('token', login.id);
                     client.writeData({ data: { isLoggedIn: true } });
-                    history.push('/perfil');
+                    window.location.reload();
                 }
             }
         }

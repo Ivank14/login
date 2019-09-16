@@ -1,0 +1,20 @@
+.navbar{
+    .menu{
+        background: transparent;
+        border: 0;
+        position: absolute;
+        right: 40px;
+    }
+    .menu:focus{
+        outline: none;      
+    }
+    .salir{
+        background: transparent;
+        border: 0;
+        position: absolute;
+        right: 10px;
+    }
+    .salir:focus{
+        outline: none;      
+    }
+}

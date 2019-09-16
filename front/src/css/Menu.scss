@@ -1,22 +1,30 @@
-.home-module{
+.menu-module{
     position: absolute;
     margin: 0;
     padding:0;
     display:flex;
     justify-content: center;
     align-items: center;
+    top:0;
     height: 100vh;
     width: 100vw;
     background: #111;
     font-family: 'Poppins', sans-serif;
     font-size: 30px;
     overflow: hidden;
+    z-index:5;
+    *{
+        z-index:6;
+    }
     .exit{
         background: transparent;
         border: 0;
         position: absolute;
         top: 30px;
         right: 40px;
+    }
+    .exit:focus{
+        outline: none;      
     }
     ul{
         margin: 0;
@@ -36,7 +44,7 @@
         overflow: hidden;
         text-transform: uppercase;
         font-weight: 600;
-        z-index: 2;
+        z-index: 7;
     }
     ul li a span{
         width: 100;
@@ -44,7 +52,6 @@
         display: block;
         transition: 0.5s;
         color: #fff;
-        z-index: 3;
     }
     ul li a span:nth-child(1){
         color: #444;
@@ -78,7 +85,7 @@
     ul li:hover:before{
         opacity:0.8;
         transform: translate(-150px,-150px);
-        transition-delay: 0.5s;
+        transition-delay: 0.3s;
     }
 
     ul li:nth-child(1):before{
