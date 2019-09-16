@@ -11,7 +11,7 @@ import '../css/Calificar.scss';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 var persona = {
-    id: '',
+    id: 0,
     nombre: '',
     email: '',
     contrasena: '',
@@ -36,9 +36,6 @@ const QUERY = gql`
 
 // buscador https://codepen.io/MilanMilosev/pen/JdgRpB
 
-
-
-
 function Lista(props) {
     const [filt, setState] = useState('')
 
@@ -61,7 +58,7 @@ function Lista(props) {
             </form>
             <PerfectScrollbar>
                 <ListGroup variant="flush">{data.personas.filter(ele => (ele.nombre.toLowerCase().includes(filt.toLowerCase()))).map((persona) => (
-                    <ListGroup.Item action variant='dark' className="iteml" value={persona.id} onClick={props.seleccion}>{persona.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
+                    <ListGroup.Item action variant='dark' className="iteml"  value={persona.id} onClick={props.seleccion(persona.id)}>{persona.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
                 ))}
                 </ListGroup>
             </PerfectScrollbar>
@@ -73,11 +70,11 @@ function Lista(props) {
 
 export default function Calificar(props) {
     var uid=props.uid
-        
+        console.log(uid)
         const { data, loading, error, refetch } = useQuery(gql`
         
-            query Persona($uid:Int!){
-            persona(id: $uid){
+            query Persona($id:Int!){
+            persona(id: $id){
             id
             nombre
             email
@@ -90,11 +87,12 @@ export default function Calificar(props) {
             numCal
             skills
             }
-        }`,{variables:{uid:uid}})
-    const seleccion = (e) => {
-        const id = e.target.value
-        console.log(id);
-        refetch({variables:{uid:id}}).then(datos=>{
+        }`,{variables:{id:parseInt(uid)}})
+    const seleccion = (id) => {
+
+        
+        console.log('fuellamado')
+        refetch({variables:{uid:parseInt(id)}}).then(datos=>{
             persona=datos.data.persona;
             console.log(datos.data.persona);
         });
