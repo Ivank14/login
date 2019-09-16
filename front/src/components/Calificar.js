@@ -36,9 +36,6 @@ const QUERY = gql`
 
 // buscador https://codepen.io/MilanMilosev/pen/JdgRpB
 
-
-
-
 function Lista(props) {
     const [filt, setState] = useState('')
 
@@ -91,6 +88,7 @@ export default function Calificar(props) {
             skills
             }
         }`,{variables:{uid:uid}})
+        
     const seleccion = (e) => {
         const id = e.target.value
         console.log(id);
