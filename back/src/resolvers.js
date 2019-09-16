@@ -30,16 +30,32 @@ module.exports = {
         },
         register: async(_,{ nombre,email,contrasena,id,genero,empresa,phone },{dataSources})=>{
           
-            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone );
-            //console.log(persona.dataValues);
+            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone,"" );
             return{
                 success:persona? true: false,
-                message:persona? 'registro correcto':'algo fallo'
+                message:persona? 'registro correcto':'algo fallo',
+                id: parseInt(id)
               };
         },
-        // calificar: async (_,{calificacion},{dataSources})=>{
-        //   const actuan = await dataSources.personaAPI.
-        // }
+        cambiarDescripcion: async(_, { id, nuevaDescripcion }, { dataSources })=>{
+          const log = await dataSources.personaAPI.nuevaDescripcion({id,nuevaDescripcion});
+          return {
+            success:log? true: false,
+            message:log? 'Descripcion cambiada':'Paila',
+            id: id
+          };
+        },
+        cambiarSkills: async(_, { id, nuevasSkills }, { dataSources })=>{
+          const log = await dataSources.personaAPI.nuevasSkills({id,nuevasSkills});
+          return {
+              success:log? true: false,
+              message:log? 'Skills cambiadas':'Paila',
+              id: id
+            };
+        },
+        calificar: async (_,{id, calificacion},{dataSources})=>{
+          return await dataSources.personaAPI.calificar(id, calificacion)
+        }
         // bookTrips: async (_, { launchIds }, { dataSources }) => {
         //     const results = await dataSources.userAPI.bookTrips({ launchIds });
         //     const launches = await dataSources.launchAPI.getLaunchesByIds({

@@ -25,13 +25,12 @@ class PersonaAPI extends DataSource {
    * instead
    */
   // const email =this.context && this.context.user ? this.context.user.email : emailArg;
-  async createPersona( nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal, descripcion, empresa, phone ) {
+  async createPersona( nombre,email,contrasena,linkImg,nacimiento,id,genero,calificacion,numCal, descripcion, empresa, phone, skills ) {
     const existE = await  this.store.persona.findOne({where: {email: email}});
     const existI = await this.store.persona.findByPk(id);
-    // console.log(existE,existI);
     if ( existE || existI|| !isEmail.validate(email)) return null;
 
-    const persona = await this.store.persona.create({ id:id,nombre: nombre,email:email, contrasena: contrasena, linkImg:linkImg, nacimiento:nacimiento, genero:genero, calificacion:calificacion, numCal:numCal, descripcion:descripcion, empresa:empresa, phone: phone});
+    const persona = await this.store.persona.create({ id:id,nombre: nombre,email:email, contrasena: contrasena, linkImg:linkImg, nacimiento:nacimiento, genero:genero, calificacion:calificacion, numCal:numCal, descripcion:descripcion, empresa:empresa, phone: phone,skills:skills});
     
     if(persona){
       this.context.user = persona.dataValues.id;  
@@ -92,6 +91,40 @@ class PersonaAPI extends DataSource {
     const log = await this.store.persona.destroy({where:{id:id}})
     return log;
   }
+  async nuevaDescripcion({ id,nuevaDescripcion }) {
+    const changed = await this.store.persona.update({
+      descripcion: nuevaDescripcion
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    console.log(changed);
+    return changed ;
+  } 
+  async nuevasSkills({ id,nuevasSkills }) {
+    const changed = await this.store.persona.update({
+      skills: nuevasSkills
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    return changed ;
+  }
+  async calificar(id,calificacion){
+    const actual = (await this.getPersona({id})).dataValues;
+    const nueva = ((actual.calificacion*actual.numCal)+calificacion)/(actual.numCal+1);
+    const changed = await this.store.persona.update({
+      calificacion: nueva,
+      numCal: actual.numCal+1
+    },{
+      where:{id:id},
+      returning:true,
+      plain:true
+    });
+    return(nueva);
+  } 
 }
 
 module.exports = PersonaAPI;

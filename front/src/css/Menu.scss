@@ -1,0 +1,98 @@
+.home-module{
+    position: absolute;
+    margin: 0;
+    padding:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #111;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    overflow: hidden;
+    .exit{
+        background: transparent;
+        border: 0;
+        position: absolute;
+        top: 30px;
+        right: 40px;
+    }
+    ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    ul li{
+        position: relative;
+        list-style: none;
+        margin: 0 90px;
+    }
+    ul li a{
+        position: relative;
+        height: 40px;
+        display: block;
+        text-decoration: none;
+        overflow: hidden;
+        text-transform: uppercase;
+        font-weight: 600;
+        z-index: 2;
+    }
+    ul li a span{
+        width: 100;
+        height: 100%;
+        display: block;
+        transition: 0.5s;
+        color: #fff;
+        z-index: 3;
+    }
+    ul li a span:nth-child(1){
+        color: #444;
+    }
+    
+    ul li a span:nth-child(2){
+        color: #fff;
+    }
+    ul li:hover a span:nth-child(1){
+        transform: translateY(-100%);
+    }
+    
+    ul li:hover a span:nth-child(2){
+        transform: translateY(-100%);
+    }
+
+    ul li:before{
+        content:'';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        height: 300px;
+        background: #00f;
+        opacity: 0;
+        transition: 0.5s;
+        transform: translate(-150px,-50px);
+        //transform: translateY(100px)
+        
+    }
+    ul li:hover:before{
+        opacity:0.8;
+        transform: translate(-150px,-150px);
+        transition-delay: 0.5s;
+    }
+
+    ul li:nth-child(1):before{
+        background: url("../assets/home.jpg");
+        background-size: cover;
+    }
+    
+    ul li:nth-child(2):before{
+        background: url("../assets/perfil.jpg");
+        background-size: cover;
+    }
+    
+    ul li:nth-child(3):before{
+        background: url("../assets/calificar.jpg");
+        background-size: cover;
+    }
+}

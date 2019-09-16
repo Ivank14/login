@@ -15,7 +15,8 @@ const typeDefs = gql`
         numCal: Int!
         empresa: String!
         phone: String!
-        descripcion: String
+        descripcion: String,
+        skills: String
         }
     type Query {
         personas: [Persona]!
@@ -23,11 +24,13 @@ const typeDefs = gql`
         me: Persona
     }
     type Mutation{
-        cambioContrasena(contrasena: String!):Response!
-        calificar(calificacion: Float!):Float!
+        cambioContrasena(id:Int!, contrasena: String!):Response!
+        calificar(id:Int!, calificacion: Float!):Float!
         register(nombre: String!,email: String!,contrasena: String!,id: Int!,genero: Boolean!, empresa: String!, phone: String!):Response!
         login(email: String!,contrasena: String!):Response!
         delete(id: Int!): Response!
+        cambiarDescripcion(id: Int!, nuevaDescripcion: String!):Response!
+        cambiarSkills(id: Int!, nuevasSkills: String!):Response!
     }
     type Response{
         success: Boolean!
