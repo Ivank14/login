@@ -38,7 +38,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div class="wrapper">
-       {/*<Menu/>*/}
+        {/* <Menu/> */}
       <Router history={history} >
         <Route path="/" exact render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Loginfunction/>)}/>
         <Route path="/perfil"   render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>

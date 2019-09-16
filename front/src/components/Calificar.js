@@ -36,9 +36,6 @@ const QUERY = gql`
 
 // buscador https://codepen.io/MilanMilosev/pen/JdgRpB
 
-
-
-
 function Lista(props) {
     const [filt, setState] = useState('')
 
@@ -111,7 +108,7 @@ export default function Calificar(props) {
         if (loading) return <h1>Cargando...</h1>
         if (error) { console.log(error);}
         console.log(data);
-        persona = data.persona;
+        persona = data?data.persona:{};
         return (
             <div class='calificar-module'>
                 <Container bsPrefix='lateral'>
