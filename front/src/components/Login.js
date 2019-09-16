@@ -191,7 +191,7 @@ export class Login extends Component {
                     <br />
                     <div>
                         <label>¿Ya tienes una cuenta? </label>
-                        <a class="link"
+                        <a className="link" 
                             onClick={() => this.setState({ registrado: true })}
                         > Ingresa</a>
                     </div>

@@ -9,11 +9,14 @@ import gql from 'graphql-tag'
 import StarRating from 'react-svg-star-rating'
 import '../css/Calificar.scss';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-
+import Popup from "reactjs-popup";
 
 
 
 // buscador https://codepen.io/MilanMilosev/pen/JdgRpB
+
+
+ 
 
 function Lista(props) {
     const [filt, setState] = useState('')
@@ -27,7 +30,7 @@ function Lista(props) {
         document.getElementById("search-input").classList.toggle("square");
         setState('');
     };
-    
+
     return (
         <div>
             <form style={{ height: '50px' }} id="content" class='centrar-h forma'>
@@ -36,7 +39,7 @@ function Lista(props) {
             </form>
             <PerfectScrollbar>
                 <ListGroup variant="flush">{props.data.personas.filter(ele => (ele.nombre.toLowerCase().includes(filt.toLowerCase()))).map((personaA) => (
-                    <ListGroup.Item action variant='dark' className="iteml"  value={personaA.id} onClick={()=>props.seleccion(personaA.id,personaA.nombre,personaA.calificacion)}>{personaA.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
+                    <ListGroup.Item action variant='dark' className="iteml" value={personaA.id} onClick={() => props.seleccion(personaA.id, personaA.nombre, personaA.calificacion)}>{personaA.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
                 ))}
                 </ListGroup>
             </PerfectScrollbar>
@@ -60,46 +63,51 @@ export default function Calificar(props) {
         calificar(id:$id, calificacion: $calificacion)
     }`
 
-    
-    const { loading, data,refetch } = useQuery(QUERY)
+
+    const { loading, data, refetch } = useQuery(QUERY)
     var persona = {
-        id:0,
-        nombre: '',
-       calificacion: 0.0,
+        id: 0,
+        nombre: '¿A quien quieres calificar?',
+        calificacion: 0,
     }
     const [{
         id,
         nombre,
         calificacion,
-       
-    }, setPersona]= useState(persona)
-    const [mutation, {data:dataMutation}]= useMutation(MUTATION_CALIFICAR,
-        {onCompleted(d){
-            console.log(d)
-            refetch();
-            setPersona({id:id,nombre:nombre,calificacion:d.calificar})
 
-        }})
+    }, setPersona] = useState(persona)
+    const [editablr, CambiarEditable]= useState(false)
+    const [mutation, { data: dataMutation }] = useMutation(MUTATION_CALIFICAR,
+        {
+            onCompleted(d) {
+                console.log(d)
+                refetch();
+                setPersona({ id: id, nombre: nombre, calificacion: d.calificar })
+
+            }
+        })
+    
+    
     if (loading) return <h1>Cargando...</h1>
-    
-    
 
-        // const { data, loading, error, refetch } = useQuery(gql`
-        
-        //     query Persona($id:Int!){
-        //     persona(id: $id){
-            
-        //     nombre
-            
-        //     calificacion
-        //     numCal
-            
-        //     }
-        // }`,{variables:{id:parseInt(uid)}})
+
+
+    // const { data, loading, error, refetch } = useQuery(gql`
+
+    //     query Persona($id:Int!){
+    //     persona(id: $id){
+
+    //     nombre
+
+    //     calificacion
+    //     numCal
+
+    //     }
+    // }`,{variables:{id:parseInt(uid)}})
     const seleccion = (id, nom, cal) => {
 
-        
-        setPersona({id:id,nombre:nom, calificacion:cal})
+
+        setPersona({ id: id, nombre: nom, calificacion: cal })
         // console.log('fuellamado')
         // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
         //     if(datos.loading) return;
@@ -107,59 +115,63 @@ export default function Calificar(props) {
         //     console.log(datos.data.persona);
         //});
     }
-    
 
-    function round5(x)
-{
-    var res = (x % 0.5) >= 0.25 ? parseInt(x / 0.5) * 0.5 + 0.5 : parseInt(x / 0.5) * 0.5;
-    return res;
-}
 
-        // this.state = {
-        //     calificacion: null
-        // }
+    function round5(x) {
+        var res = (x % 0.5) >= 0.25 ? parseInt(x / 0.5) * 0.5 + 0.5 : parseInt(x / 0.5) * 0.5;
+        console.log(res)
+        return res;
+    }
 
-        // const oClick = (value) => {
-        //     this.setState({ calificacion: value })
-        // }
-        // if (loading) return <h1>Cargando...</h1>
-        // if (error) { console.log(error);}
-        // console.log(data);
-        // persona = data?data.persona:{};
-        return (
-            <div class='calificar-module'>
-                <Container bsPrefix='lateral'>
+    // this.state = {
+    //     calificacion: null
+    // }
 
-                    <Row >
-                        <Col md={3} className='lateral content'>
-                            <Lista  seleccion={seleccion} data={data}/>
-                        </Col>
-                        
-                        <Col md={5} >
-                            <Card className='card-profile centrado' >
-                                <div class='profile-image'>
-                                    <img src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" />
-                                </div>
-                                <Row className='profile'>
-                                    <Col className="calificacion" >
-                                        <h1>{nombre}</h1>
-                                        <b>{calificacion.toFixed(1)}</b>
-                                        
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
+    // const oClick = (value) => {
+    //     this.setState({ calificacion: value })
+    // }
+    // if (loading) return <h1>Cargando...</h1>
+    // if (error) { console.log(error);}
+    // console.log(data);
+    // persona = data?data.persona:{};
+    return (
+        <div class='calificar-module'>
+            <Container bsPrefix='lateral'>
+
+                <Row >
+                    <Col md={3} className='lateral content'>
+                        <Lista seleccion={seleccion} data={data} />
+                    </Col>
+
+                    <Col md={5} >
+                 <Card className='card-profile centrado' >
+                            <div class='profile-image'>
+                                <img src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" />
+                            </div>
+                            <Row className='profile'>
                                 
-                                    </Col>
-                                </Row>
-                                <Row>
-                                
-                                </Row>
-                            </Card>
+                                <Col className="calificacion" >
+                                    <h1>{nombre}</h1>
+                                    <b>{calificacion.toFixed(1)}</b>
+                                    
+                                    <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { mutation({ variables: { id: id, calificacion: rating } }) }} />
+                                    
+
+                                </Col>
+                            </Row>
+                            <Row>
+
+                            </Row>
+                   </Card>
+                   
+                    
 
 
-                        </Col>
-                    </Row>
+                    </Col>
+                </Row>
 
-                </Container>
-            </div>
-        )
+            </Container>
+        </div>
+    )
 
 }
