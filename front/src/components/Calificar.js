@@ -66,19 +66,18 @@ export default function Calificar(props) {
         id:0,
         nombre: '',
        calificacion: 0.0,
-       readOnly: true
     }
     const [{
         id,
         nombre,
         calificacion,
-        readOnly
+       
     }, setPersona]= useState(persona)
     const [mutation, {data:dataMutation}]= useMutation(MUTATION_CALIFICAR,
         {onCompleted(d){
             console.log(d)
             refetch();
-            setPersona({id:id,nombre:nombre,calificacion:d.calificar, readOnly:readOnly})
+            setPersona({id:id,nombre:nombre,calificacion:d.calificar})
 
         }})
     if (loading) return <h1>Cargando...</h1>
@@ -99,7 +98,7 @@ export default function Calificar(props) {
         // }`,{variables:{id:parseInt(uid)}})
     const seleccion = (id, nom, cal) => {
 
-        setPersona({id:id,nombre:nom, calificacion:cal,readOnly:readOnly})
+        setPersona({id:id,nombre:nom, calificacion:cal})
         // console.log('fuellamado')
         // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
         //     if(datos.loading) return;
@@ -107,11 +106,7 @@ export default function Calificar(props) {
         //     console.log(datos.data.persona);
         //});
     }
-    function readOnlyChange(){
-        
-        setPersona({id:id,nombre:nombre, calificacion:calificacion,readOnly:!readOnly})
-        console.log(readOnly)
-    }
+    
 
     function round5(x)
 {
@@ -148,8 +143,8 @@ export default function Calificar(props) {
                                         <h1>{nombre}</h1>
                                         <b>{calificacion.toFixed(1)}</b>
                                         <div class='centrado-h fit'  >
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' isReadOnly={readOnly} initialRating={readOnly? round5(calificacion):0.0} handleOnClick={(rating) => { if(!readOnly) mutation({variables: {id:id,calificacion:rating}}) }} />
-                                <button onClick={readOnlyChange}>Agregar Calificacion</button>
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
+                                
                             </div>
                                     </Col>
                                 </Row>
