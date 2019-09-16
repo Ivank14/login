@@ -193,7 +193,17 @@ export default function Perfil(props) {
                         </div>
                         <Row className='profile' >
                             <Col md={2} className = "opciones">
-
+                            <Row style={{height:'10%'}}/>
+                                <Row style={{height:'30%'}}>
+                                    <MDBIcon fab className='centrado' size="2x"icon="facebook-square" style={{color:'white'}}/>
+                                </Row>
+                                <Row style={{height:'30%'}}>
+                                    <MDBIcon fab className='centrado' size="2x"icon="google-plus-square" style={{color:'white'}}/>
+                                   
+                                </Row>
+                                <Row style={{height:'30%'}}>
+                                    <MDBIcon fab className='centrado' size="2x"icon="twitter-square" style={{color:'white'}}/>
+                                </Row>
                             </Col>
                             <Col md={10} className = "calificacion">
                                 <h1>{persona.nombre}</h1>
