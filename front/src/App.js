@@ -39,12 +39,12 @@ function App() {
     <ApolloProvider client={client}>
       <div class="wrapper">
         <Menu/>
-      {/* <Router history={history} >
+      { <Router history={history} >
         <Route path="/" exact render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Loginfunction/>)}/>
         <Route path="/perfil"   render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/calificar" render={()=>(localStorage.getItem('token')?  <Calificar uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/home" component={Home} />
-      </Router> */}
+      </Router> }
       </div>
     </ApolloProvider>
   );
