@@ -123,7 +123,7 @@ class PersonaAPI extends DataSource {
       returning:true,
       plain:true
     });
-    return(nueva);
+    return(changed? nueva:0.0);
   } 
 }
 

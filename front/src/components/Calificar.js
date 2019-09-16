@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -36,7 +36,7 @@ function Lista(props) {
             </form>
             <PerfectScrollbar>
                 <ListGroup variant="flush">{props.data.personas.filter(ele => (ele.nombre.toLowerCase().includes(filt.toLowerCase()))).map((personaA) => (
-                    <ListGroup.Item action variant='dark' className="iteml"  value={personaA.id} onClick={()=>props.seleccion(personaA.id,personaA.nombre)}>{personaA.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
+                    <ListGroup.Item action variant='dark' className="iteml"  value={personaA.id} onClick={()=>props.seleccion(personaA.id,personaA.nombre,personaA.calificacion)}>{personaA.nombre}<span class="Iconos_Perfiles"></span></ListGroup.Item>
                 ))}
                 </ListGroup>
             </PerfectScrollbar>
@@ -52,23 +52,35 @@ export default function Calificar(props) {
         personas{
         id
         nombre
-        
+        calificacion
         }
     }`
+    const MUTATION_CALIFICAR = gql`
+    mutation calificarSer($id:Int!, $calificacion:Float!){
+        calificar(id:$id, calificacion: $calificacion)
+    }`
 
-    const { loading, data } = useQuery(QUERY)
+    
+    const { loading, data,refetch } = useQuery(QUERY)
     var persona = {
-        
+        id:0,
         nombre: '',
-       
+       calificacion: 0.0
     }
     const [{
-        
+        id,
         nombre,
-        
+        calificacion
     }, setPersona]= useState(persona)
-    if (loading) return <h1>Cargando...</h1>
+    const [mutation, {data:dataMutation}]= useMutation(MUTATION_CALIFICAR,
+        {onCompleted(d){
+            console.log(d)
+            refetch();
+            setPersona({id:id,nombre:nombre,calificacion:d.calificar})
 
+        }})
+    if (loading) return <h1>Cargando...</h1>
+    
     
 
     var uid=props.uid
@@ -85,9 +97,9 @@ export default function Calificar(props) {
             
         //     }
         // }`,{variables:{id:parseInt(uid)}})
-    const seleccion = (id, nom) => {
+    const seleccion = (id, nom, cal) => {
 
-        setPersona({nombre:nom})
+        setPersona({id:id,nombre:nom, calificacion:cal})
         // console.log('fuellamado')
         // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
         //     if(datos.loading) return;
@@ -122,17 +134,20 @@ export default function Calificar(props) {
                                     <img src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" />
                                 </div>
                                 <Row className='profile'>
-                                    <Col className="calificacion">
+                                    <Col className="calificacion" >
                                         <h1>{nombre}</h1>
+                                        <b>{calificacion.toFixed(1)}</b>
+                                        <div class='centrado-h fit'  >
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { mutation({variables: {id:id,calificacion:rating}}) }} />
+                            </div>
                                     </Col>
+                                </Row>
+                                <Row>
+                                
                                 </Row>
                             </Card>
                         </Col>
-                        <Col md={4}>
-                            <div class='centrado-h fit'  >
-                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { console.log(rating) }} />
-                            </div>
-                        </Col>
+                        
                     </Row>
 
                 </Container>
