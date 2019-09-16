@@ -11,7 +11,7 @@ import '../css/Calificar.scss';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 var persona = {
-    id: '',
+    id: 0,
     nombre: '',
     email: '',
     contrasena: '',
@@ -73,11 +73,11 @@ function Lista(props) {
 
 export default function Calificar(props) {
     var uid=props.uid
-        
+        console.log(uid)
         const { data, loading, error, refetch } = useQuery(gql`
         
-            query Persona($uid:Int!){
-            persona(id: $uid){
+            query Persona($id:Int!){
+            persona(id: $id){
             id
             nombre
             email
@@ -90,7 +90,7 @@ export default function Calificar(props) {
             numCal
             skills
             }
-        }`,{variables:{uid:uid}})
+        }`,{variables:{id:parseInt(uid)}})
     const seleccion = (e) => {
         const id = e.target.value
         console.log(id);

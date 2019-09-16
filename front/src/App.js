@@ -20,7 +20,7 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   cache,
   link: new HttpLink({
-    uri: 'http://192.168.0.9:4000/graphql',
+    uri: 'http://localhost:4000/graphql',
     headers: {
       authorization: localStorage.getItem('token'),
     },
@@ -38,13 +38,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div class="wrapper">
-        <Menu/>
-      {/* <Router history={history} >
+       {/*<Menu/>*/}
+      <Router history={history} >
         <Route path="/" exact render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Loginfunction/>)}/>
         <Route path="/perfil"   render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/calificar" render={()=>(localStorage.getItem('token')?  <Calificar uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/home" component={Home} />
-      </Router> */}
+      </Router>
       </div>
     </ApolloProvider>
   );
