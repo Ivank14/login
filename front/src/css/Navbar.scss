@@ -1,9 +1,15 @@
 .navbar{
+    p {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 0;
+        display: inline;    
+    }
     .menu{
         background: transparent;
         border: 0;
         position: absolute;
-        right: 40px;
+        right: 100px;
     }
     .menu:focus{
         outline: none;      
@@ -12,7 +18,7 @@
         background: transparent;
         border: 0;
         position: absolute;
-        right: 10px;
+        right: 20px;
     }
     .salir:focus{
         outline: none;      

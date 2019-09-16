@@ -28,7 +28,7 @@ const image4 =
 export class Home extends Component {
   render() {
     return (
-      <div>
+      <div class="home-module">
       <div class='curve'>
         <section>
         <div class= 'content'>

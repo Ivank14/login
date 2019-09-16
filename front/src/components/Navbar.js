@@ -26,10 +26,10 @@ export default class Navb extends Component {
                             height="30"
                             className="d-inline-block align-top"
                         />
-                        {'Project'}
+                        <p>Project</p>
                     </Navbar.Brand>
-                    <button class="menu centrado-v" onClick= {()=>(this.setState({enable:true}))}><MDBIcon style={{ color: "white" }} icon='bars' /></button>
-                    <button class="salir centrado-v" onClick= {()=>{localStorage.removeItem('token'); window.location.reload();}}><MDBIcon style={{ color: "white" }} icon='sign-out-alt' /></button>
+                    <button class="menu centrado-v" onClick= {()=>(this.setState({enable:true}))}><MDBIcon size="2x" style={{ color: "white" }} icon='bars' /></button>
+                    <button class="salir centrado-v" onClick= {()=>{localStorage.removeItem('token'); window.location.reload();}}><MDBIcon size="2x" style={{ color: "white" }} icon='sign-out-alt' /></button>
                 </Navbar>
                 <Menu enable={this.state.enable? 'flex':'none'} change = {this.volver}/>
             </>
