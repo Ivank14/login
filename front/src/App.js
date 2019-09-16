@@ -6,6 +6,7 @@ import Calificar from './components/Calificar'
 
 import Loginfunction from './components/Login'
 import Home from './components/Home'
+import Menu from './components/Menu'
 import { Route, Router, Redirect } from 'react-router-dom'
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -37,12 +38,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div class="wrapper">
-      <Router history={history} >
+        <Menu/>
+      {/* <Router history={history} >
         <Route path="/" exact render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Loginfunction/>)}/>
         <Route path="/perfil"   render={()=>(localStorage.getItem('token')?  <Perfil uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/calificar" render={()=>(localStorage.getItem('token')?  <Calificar uid={localStorage.getItem('token')}/>:<Redirect to="/"/>)}/>
         <Route path="/home" component={Home} />
-      </Router>
+      </Router> */}
       </div>
     </ApolloProvider>
   );

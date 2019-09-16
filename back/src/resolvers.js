@@ -30,7 +30,7 @@ module.exports = {
         },
         register: async(_,{ nombre,email,contrasena,id,genero,empresa,phone },{dataSources})=>{
           
-            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone );
+            const persona = await dataSources.personaAPI.createPersona( nombre,email,contrasena,"",null,id,genero,0,0,"", empresa, phone,"" );
             return{
                 success:persona? true: false,
                 message:persona? 'registro correcto':'algo fallo',
