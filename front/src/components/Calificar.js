@@ -65,12 +65,21 @@ export default function Calificar(props) {
     var persona = {
         id:0,
         nombre: '',
+<<<<<<< HEAD
        calificacion: 0.0
+=======
+       calificacion: 0.0,
+>>>>>>> ad69e7da7cf646d4e11dacbb6f3297d552682e29
     }
     const [{
         id,
         nombre,
+<<<<<<< HEAD
         calificacion
+=======
+        calificacion,
+       
+>>>>>>> ad69e7da7cf646d4e11dacbb6f3297d552682e29
     }, setPersona]= useState(persona)
     const [mutation, {data:dataMutation}]= useMutation(MUTATION_CALIFICAR,
         {onCompleted(d){
@@ -82,6 +91,7 @@ export default function Calificar(props) {
     if (loading) return <h1>Cargando...</h1>
     
     
+<<<<<<< HEAD
 
     var uid=props.uid
         console.log(uid)
@@ -99,6 +109,23 @@ export default function Calificar(props) {
         // }`,{variables:{id:parseInt(uid)}})
     const seleccion = (id, nom, cal) => {
 
+=======
+
+        // const { data, loading, error, refetch } = useQuery(gql`
+        
+        //     query Persona($id:Int!){
+        //     persona(id: $id){
+            
+        //     nombre
+            
+        //     calificacion
+        //     numCal
+            
+        //     }
+        // }`,{variables:{id:parseInt(uid)}})
+    const seleccion = (id, nom, cal) => {
+
+>>>>>>> ad69e7da7cf646d4e11dacbb6f3297d552682e29
         setPersona({id:id,nombre:nom, calificacion:cal})
         // console.log('fuellamado')
         // refetch({variables:{uid:parseInt(id)}}).then(datos=>{
@@ -107,7 +134,13 @@ export default function Calificar(props) {
         //     console.log(datos.data.persona);
         //});
     }
+    
 
+    function round5(x)
+{
+    var res = (x % 0.5) >= 0.25 ? parseInt(x / 0.5) * 0.5 + 0.5 : parseInt(x / 0.5) * 0.5;
+    return res;
+}
 
         // this.state = {
         //     calificacion: null
@@ -138,7 +171,12 @@ export default function Calificar(props) {
                                         <h1>{nombre}</h1>
                                         <b>{calificacion.toFixed(1)}</b>
                                         <div class='centrado-h fit'  >
+<<<<<<< HEAD
                                 <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true' handleOnClick={(rating) => { mutation({variables: {id:id,calificacion:rating}}) }} />
+=======
+                                <StarRating size="30" count="5" innerRadius="25" activeColor='#ffd055' hoverColor='#ffd055' isHalfRating='true'  handleOnClick={(rating) => {  mutation({variables: {id:id,calificacion:rating}}) }} />
+                                
+>>>>>>> ad69e7da7cf646d4e11dacbb6f3297d552682e29
                             </div>
                                     </Col>
                                 </Row>
