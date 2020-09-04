@@ -22,7 +22,7 @@
     "nodemon": "^1.18.4",
     "react-svg-star-rating": "^1.0.2",
     "sass": "^1.22.12",
-    "sequelize": "^4.39.0",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.0.3"
   },
   "devDependencies": {
